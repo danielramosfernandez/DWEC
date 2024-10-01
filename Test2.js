@@ -23,8 +23,11 @@ function testUnidad2(){
     document.write(x); 
     document.write("<br/>"); 
 
-    /* Prueba de funcionamiento dentro de consola */ 
+    
 }
+
+
+    /* Prueba de funcionamiento dentro de consola */ 
 function bloques(){
 let extLet=1; 
 let extVar=1; 
@@ -44,13 +47,15 @@ if(true){
     console.log("intLet: ", intLet); 
     console.log("intVar: ", intVar);  
 }
+
+
     /* Conversión de tipos */
 function animales(){
 let animal = "Aguila";  //String 
 let numPatas= 2; //Numero
-
 document.write(animal+numPatas); // el resultado va a ser Aguila2 
 }
+
 
     /* Ejemplos de conversion */
 function conversiones2(){ 
@@ -94,11 +99,13 @@ document.write("<br/>");
 
 } 
 
+
 function literals(){ 
     const libs= ["React", "Vue", "Angular"]; 
     document.write("<br/>");
     document.write(`Este curso trata de ${libs[0]}`);
 }
+
 
 function literals2(){ 
     const libs= ["React", "Vue", "Angular"];     
