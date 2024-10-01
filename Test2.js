@@ -49,6 +49,49 @@ function animales(){
 let animal = "Aguila";  //String 
 let numPatas= 2; //Numero
 
-document.write(animal+numPatas); // el resultado va a ser Aguila2
+document.write(animal+numPatas); // el resultado va a ser Aguila2 
+}
+
+    /* Ejemplos de conversion */
+function conversiones2(){ 
+    let cadena ="3.1415"; 
+    let nombre ="42";  
+    let nom="Joan";
+    let aprobado =true; 
+//conversiones con boolean  
+/* solo da true si hay algo */
+document.write(Boolean(cadena)); 
+document.write("<br/>");
+document.write(Boolean(0));
+document.write("<br/>"); 
+document.write(Boolean(" "));
+document.write("<br/>");
+document.write(Boolean(null));
+document.write("<br/>");
+document.write(Boolean(undefined));
+document.write("<br/>");
+
+//conversiones a cadena  
+/* Estamos concatenando cadenas */
+document.write(String(nombre)); 
+document.write("<br/>");
+document.write(String(nombre)+nombre);
+document.write("<br/>");
+document.write(String(aprobado)); 
+document.write("<br/>");
+
+//Conversiones a numeros 
+
+document.write(Number(nom));
+document.write("<br/>");
+document.write(Number (cadena)*2);
+document.write("<br/>");
+document.write(Number(aprobado));
+document.write("<br/>");
+document.write(parseInt(cadena));
+document.write("<br/>");
+document.write(parseFloat(cadena));
+document.write("<br/>"); 
+
 }
 
