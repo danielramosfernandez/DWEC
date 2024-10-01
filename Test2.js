@@ -81,7 +81,6 @@ document.write(String(aprobado));
 document.write("<br/>");
 
 //Conversiones a numeros 
-
 document.write(Number(nom));
 document.write("<br/>");
 document.write(Number (cadena)*2);
