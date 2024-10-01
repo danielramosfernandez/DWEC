@@ -92,5 +92,18 @@ document.write("<br/>");
 document.write(parseFloat(cadena));
 document.write("<br/>"); 
 
+} 
+
+function literals(){ 
+    const libs= ["React", "Vue", "Angular"]; 
+    document.write("<br/>");
+    document.write(`Este curso trata de ${libs[0]}`);
 }
+
+function literals2(){ 
+    const libs= ["React", "Vue", "Angular"];     
+    const l = libs.length; 
+    document.write("<br/>");
+    document.write(` ${l > 1 ? `Estas ${l} bibliotecas` : "Esta biblioteca"}: ${libs.join(", ")}`);
+} 
 
