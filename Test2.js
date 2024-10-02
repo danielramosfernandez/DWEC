@@ -112,5 +112,15 @@ function literals2(){
     const l = libs.length; 
     document.write("<br/>");
     document.write(` ${l > 1 ? `Estas ${l} bibliotecas` : "Esta biblioteca"}: ${libs.join(", ")}`);
-} 
+}  
+
+function testUnidad2_1(){ 
+    let nombre; 
+    let nota; 
+    nombre=prompt('Escribe el nombre:','Pon tu nombre');
+    nota=prompt('Escriba su nota:', '');
+    if(nota >= 5){ 
+        alert(nombre+ ' está aprobado con un ' + nota);
+    }
+}
 
