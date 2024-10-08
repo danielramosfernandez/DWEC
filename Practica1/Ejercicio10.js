@@ -1,9 +1,3 @@
-function dosUno(){
-alert("Hola mundo");
-}
-
-
-
 
 function dosDiez(){ 
     let num = parseInt(prompt("Introduce un número para iniciar la cuenta atrás"));

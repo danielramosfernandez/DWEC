@@ -1,0 +1,8 @@
+
+function dosCinco(){ 
+    const num1= prompt("Escribe el primer numero: "); 
+    let doble=Math.pow(num1,2); 
+    let triple=Math.pow(num1,3); 
+    let cuatuple=Math.pow(num1,4); 
+    document.write("El doble es ", doble, " el triple es ", triple, " el cuadruple ", cuatuple);
+} 
