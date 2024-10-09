@@ -1,0 +1,26 @@
+<html>
+    <body>
+        
+  
+    <script> 
+    let dividendo = prompt("Introduce el dividendo");
+    dividendo=parseInt(dividendo);
+    let divisor = prompt ("Introduce el divisor: ");
+    divisor=parseInt(divisor);
+        if(dividendo<divisor){ 
+            alert("El dividendo debe ser superior al divisor")
+        } else if (divisor<=0){ 
+            alert("divisor no puede ser negativo o 0");
+        }
+        else{
+    let x=dividendo 
+    let cont=0; 
+    while(x>=divisor){ 
+        x-=divisor;
+        cont++;
+        } 
+    document.write("La division de ", dividendo, " entre ", divisor, " tiene un cociente de ", cont, " con un resto ", x);
+    }
+    </script>  
+    </body>
+</html>
