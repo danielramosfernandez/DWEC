@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <script>
+            let F=parseInt(prompt("Introduce los grados Farenheit(No menos de 32, no más de cien): ")); 
+            if(isNaN(F<32||F>100)){ 
+                alert("Pon una temperatura en el intervalo correcto"); 
+            }else{ 
+                let C= 5/9*(F-32);  
+                    document.write("Son ", C.toFixed(2), " grados centigrados <br>"); 
+                    document.write("Son ", F, " grados Farenheit");
+            }
+            
+        </script>
+    </body>
+</html>

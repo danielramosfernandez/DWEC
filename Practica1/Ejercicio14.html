@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <script>
+            let num=parseInt(prompt("Introduce un número para adivinarlo(1-100)")); 
+            if (isNaN(numeroSecreto) || numeroSecreto < 1 || numeroSecreto > 100) {
+        alert("Por favor, introduce un número válido entre 1 y 100.");
+    } else { 
+        let intent=5; 
+        for (i=0; i<intent;i++){ 
+            let intent=parseInt(prompt("ADIVINA EL NÚMERO (tienes ",intent-i," intentos)"));
+        if(isNaN(intent)){ 
+            alert("Introduzca un número correcto (Ha perdido una oportunidad)"); 
+            i--; 
+        }
+        if(intent===num){ 
+            document.write("ACERTASTES"); 
+            brak; 
+        }else{ 
+            alert ("nUMERO INCORRECTO");
+        }
+
+        }
+        document.write("El numero secreto era: ", num);
+    }
+        </script>
+    </body>
+</html>

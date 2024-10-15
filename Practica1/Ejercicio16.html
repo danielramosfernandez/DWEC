@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <script>
+            let num1= parseInt(prompt("Introduce un número menor que 50 y mayor de 0: ")); 
+            let num2= parseInt(prompt("Introduce otro número menor que 50 y mayor e 0: ")); 
+            if(isNaN((num1&&num2)<0||(num1&&num2)>50)){ 
+                alert("Introduce números menores de 50 y mayores de 0 "); 
+            }else{ 
+                let menor = Math.min(num1, num2);
+                let mayor = Math.max(num1, num2); 
+                while(menor<=mayor){ 
+                    document.write(" Menor: ", menor, " Mayor ",mayor, "<br>"); 
+                    menor+=5; 
+                    mayor-=2; 
+                }
+                document.write("Fin del programa"); 
+            }
+        </script>
+    </body>
+</html>

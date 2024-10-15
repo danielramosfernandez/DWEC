@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <script>
+            let sin_iva=parseFloat(prompt("Introduzca el precio sin IVA: ")); 
+            if (isNaN(sin_iva)||sin_iva<0){ 
+        alert("Ingrese un número mayor a 0.");
+    }else{ 
+        let con_iva= parseFloat(prompt("Introduce el porcentaje de IVA: ")); 
+        if (isNaN(con_iva)||con_iva<0){ 
+            alert("Ingrese un número mayor a 0."); 
+        }else{ 
+                let calc_iva=sin_iva*(con_iva/100); 
+                let prec_total=calc_iva+sin_iva; 
+                document.write("El precio sin iva es: ",sin_iva," y el IVA es del ", con_iva, "<br>"); 
+                document.write("El precio final es ",prec_total);
+            }
+        
+    }
+        </script>
+    </body>
+</html>

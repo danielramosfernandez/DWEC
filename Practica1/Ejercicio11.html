@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <script>
+    let num = parseInt(prompt("Introduce un número para iniciar la cuenta atrás"));
+    if (isNaN(num)||num<=0){ 
+        alert("Ingrese un número mayor a 0.");
+    }else{ 
+        for(let i= num;i>=0;i--){
+            document.write("Número actual ",i, "<br>");
+        }
+        alert("Cuenta atras ")
+    }
+        </script>
+    </body>
+</html>

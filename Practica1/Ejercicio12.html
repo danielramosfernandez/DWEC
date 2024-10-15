@@ -1,0 +1,22 @@
+<html>
+    <body>
+        
+    
+<script>
+let num = parseInt(prompt("Introduce un número entero:"));
+if (isNaN(num)||num<=0){ 
+        alert("Ingrese un número mayor a 0.");
+    }else{ 
+        let cuadrado='';
+        for(let i=0;i<num;i++){ 
+            for(let j=0;j<num;j++){
+                cuadrado+='* '
+            }
+            cuadrado += '<br>';
+        }
+        document.write(cuadrado);
+    }
+
+</script>
+</body>
+</html>

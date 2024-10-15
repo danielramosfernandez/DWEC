@@ -1,0 +1,28 @@
+<html>
+    <body>
+
+<table>
+    <tr>
+        <th>Números del 1 al 100 </th>
+        <th>Números del 100 al 1</th>
+    </tr>
+    <tbody id="numeros"></tbody>
+</table>
+        <script>
+                const numerosTable = document.getElementById('numeros');
+            for(i=1;i<=100;i++){ 
+                let fila = document.createElement('tr');
+                let celda1 = document.createElement('td');
+                let celda2 = document.createElement('td');
+                celda1.innerHTML=i; 
+                celda2.innerHTML=101-i;  
+
+            
+
+                fila.appendChild(celda1);
+                fila.appendChild(celda2);
+                numerosTable.appendChild(fila);
+            }
+        </script>
+    </body>
+</html>
