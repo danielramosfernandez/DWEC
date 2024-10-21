@@ -1,18 +1,40 @@
 <html>
     <body>
         <script>
-            let opcion=parseInt(prompt("Escoge que quieres hacer 1.Salir 2.Sumatorio 3.Factorial ")); 
-            if (isNaN(opcion<1||opcion>3)){ 
-                alert("Escoge una opcion en el rango (1-3)"); 
-            }else{ 
-                switch(opcion){ 
-                    case 1: 
-                    document.write("Fin del programa"); 
-                    break; 
-                    case 2: 
-                    
-                }
+              let opcion = parseInt(prompt("Escoge que quieres hacer: 1. Salir 2. Sumatorio 3. Factorial"));
+
+if (isNaN(opcion) || opcion < 1 || opcion > 3) {
+    alert("Escoge una opción válida en el rango (1-3)");
+} else {
+    switch (opcion) {
+        case 1:
+            document.write("Fin del programa");
+            break;
+
+        case 2:
+            let num = parseInt(prompt("Introduce la cantidad de números que quieres sumar"));
+            let total = 0;
+            
+            for (let i = 0; i < num; i++) {
+                let sumando = parseFloat(prompt("Introduce un sumando"));
+                total += sumando;
             }
-        </script>
+            
+            document.write("El sumatorio es: " + total);
+            break;
+
+        case 3:
+            let valor = parseInt(prompt("Introduce el número para calcular el factorial"));
+            let respuesta = 1;
+
+            for (let i = 1; i <= valor; i++) {
+                respuesta *= i;
+            }
+
+            document.write("El factorial de " + valor + " es: " + respuesta);
+            break;
+    }
+}
+</script>
     </body>
 </html>

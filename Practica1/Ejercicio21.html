@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <script>
+
+                 let cantidad = parseInt(prompt("¿Cuántos números quieres introducir para calcular la media?"));
+
+let suma = 0;
+
+
+for (let i = 0; i < cantidad; i++) {
+    let numero = parseFloat(prompt("Introduce el número " + (i + 1) + ":"));
+    suma += numero;  
+}
+
+
+let media = suma / cantidad;
+
+document.write("La media de los números introducidos es: " + media.toFixed(2));
+        </script>
+    </body>
+</html>

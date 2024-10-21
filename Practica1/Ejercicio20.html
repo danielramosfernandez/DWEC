@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <script>
+            let total= parseInt(prompt("Introduce el número total de personas de tu clase ")); 
+            let totalMujeres=0; 
+            let totalHombres=0; 
+      
+            for(let i=0;i<total; i++){
+                let sexo= prompt("Introduce el sexo del o la estudiante(hombre-mujer)"); 
+                if(sexo==='hombre'){ 
+                    totalHombres++; 
+                }else if(sexo==='mujer'){ 
+                    totalMujeres++;
+                }else{ 
+                    alert("Por favor introduce una de las opciones correctas(hombre-mujer)")
+                i--;
+              }
+            }
+            let porcentajeHombres=(totalHombres/total)*100; 
+            let porcentajeMujeres=(totalMujeres/total)*100; 
+
+            document.write("El porcentaje de hombres es ", porcentajeHombres," %"); 
+            document.write("El porcentaje de mujeres es ", porcentajeMujeres," %")
+      
+        </script>
+    </body>
+</html>
