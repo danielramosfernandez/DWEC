@@ -1,0 +1,26 @@
+<html>
+    <body>
+        <script>
+            let total=prompt("Introduce la cantidad de números de tu lista "); 
+            let totalPares=0; 
+            let totalImpares=0; 
+      
+            for(let i=0;i<total; i++){
+                let numeros= prompt("Introduce los números de tu lista: "); 
+                if(numeros%2==0){ 
+                    totalPares++; 
+                }else if(numeros%2!=0){ 
+                    totalImpares++;
+                }else{ 
+                    alert("Por favor introduce un número correcto");
+                i--;
+              }
+            }
+    
+
+            document.write("El total de pares es ", totalPares, "<br>"); 
+            document.write("El total de impares es ", totalImpares, "<br>");
+      
+        </script>
+    </body>
+</html>
