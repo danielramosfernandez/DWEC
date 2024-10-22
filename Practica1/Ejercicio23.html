@@ -1,7 +1,36 @@
 <html>
     <body>
         <script>
+            let correcto;
+          do{  
+         correcto=true;
             
+            let mes = prompt ("Introduce el mes de forma numerica ", " "); 
+           
+            switch(mes){ 
+                case '4': 
+                case '6': 
+                case '9': 
+                case '11': 
+                alert("El mes introducido tiene 30 días");
+                break;
+                case '1': 
+                case '3': 
+                case '5': 
+                case '7': 
+                case '8': 
+                case '10': 
+                case '12': 
+                    alert('El mes tiene 31 días'); 
+                    break; 
+                case '2': 
+                alert("El mes introducido tien 28 o 29 días si es bisiesto"); 
+                break; 
+                default: 
+                    alert("El mes introducido no tiene formato correcto ");
+                correcto=false;
+                }
+            }while(!correcto)
         </script>
     </body>
 </html>
