@@ -1,0 +1,58 @@
+<html>
+    <body>
+        <script>
+           
+class Alumno {
+    constructor(nombre, nota1, nota2, nota3) {
+        this.nombre = nombre;
+        this.notas = [nota1, nota2, nota3];
+    }
+
+    calcularNotaMedia() {
+        const sumaNotas = this.notas.reduce((a, b) => a + b, 0);
+        return sumaNotas / this.notas.length;
+    }
+}
+
+
+let alumnos = [];
+
+function añadirAlumno(nombre, nota1, nota2, nota3) {
+    const nuevoAlumno = new Alumno(nombre, nota1, nota2, nota3);
+    alumnos.push(nuevoAlumno);
+}
+
+
+function eliminarAlumno(nombre) {
+    alumnos = alumnos.filter(alumno => alumno.nombre !== nombre);
+}
+
+function añadirNota(nombre, nuevaNota) {
+    const alumno = alumnos.find(al => al.nombre === nombre);
+    if (alumno) {
+        alumno.notas.push(nuevaNota);
+    } else {
+        console.log("Alumno no encontrado.");
+    }
+}
+
+function mostrarAlumnos() {
+    alumnos.forEach(alumno => {
+        console.log(`Nombre: ${alumno.nombre}, Notas: ${alumno.notas.join(', ')}, Nota media: ${alumno.calcularNotaMedia()}`);
+    });
+}
+
+
+añadirAlumno("Juan", 8, 9, 7);
+añadirAlumno("Ana", 6, 8, 9);
+mostrarAlumnos();
+
+añadirNota("Juan", 10);
+mostrarAlumnos();
+
+eliminarAlumno("Ana");
+mostrarAlumnos();
+
+        </script>
+    </body>
+</html>

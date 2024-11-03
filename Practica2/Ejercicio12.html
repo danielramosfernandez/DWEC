@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <script>
+            function mostrarFechaActual() {
+    const fechaActual = new Date();
+    return `La fecha actual es: ${fechaActual.toLocaleDateString()} ${fechaActual.toLocaleTimeString()}`;
+}
+
+function mostrarFinDelMundoMaya() {
+    const finMundoMaya = new Date('2012-12-21T00:00:00'); 
+    return `La fecha del fin del mundo maya es: ${finMundoMaya.toLocaleDateString()}`;
+}
+
+function calcularTiempoTranscurrido(fechaInicio) {
+    const fechaActual = new Date();
+    const diferenciaMilisegundos = fechaActual - fechaInicio; //
+    const diferenciaSegundos = Math.floor(diferenciaMilisegundos / 1000); 
+    const diferenciaDias = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24)); 
+
+    return {
+        dias: diferenciaDias,
+        segundos: diferenciaSegundos
+    };
+}
+
+const fechaActual = mostrarFechaActual();
+const finMundoMaya = mostrarFinDelMundoMaya();
+const tiempoTranscurrido = calcularTiempoTranscurrido(new Date('2012-12-21T00:00:00'));
+
+alert(fechaActual);
+alert(finMundoMaya);
+alert(`Han pasado ${tiempoTranscurrido.dias} días y ${tiempoTranscurrido.segundos} segundos desde el fin del mundo maya.`);
+
+        </script>
+    </body>
+</html>

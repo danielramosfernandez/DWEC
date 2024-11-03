@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Suma de dos valores</title>
+</head>
+<body>
+
+<script>
+    function sumarDosValores() {
+    
+        let valor1 = parseFloat(prompt("Introduzca el primer valor:"));
+        let valor2 = parseFloat(prompt("Introduzca el segundo valor:"));
+        
+    
+        if (!isNaN(valor1) && !isNaN(valor2)) {
+            let suma = valor1 + valor2; // Calcular la suma
+            document.body.innerHTML += `<h2>El resultado de la suma es: ${suma}</h2>`; // Mostrar el resultado en la página
+        } else {
+            document.body.innerHTML += `<h2>Por favor, introduzca valores numéricos válidos.</h2>`;
+        }
+    }
+
+
+    sumarDosValores();
+</script>
+
+</body>
+</html>

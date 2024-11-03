@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            let num1 = parseFloat(prompt("Introduce un número ")); 
+            let num2 = parseFloat(prompt("Introduce otro número ")); 
+            let num3 = parseFloat(prompt("Introduce otro número más ")); 
+
+            let numeros = [num1, num2, num3]; 
+            // Llamar a sort() correctamente
+            numeros.sort(function(a, b) { 
+                return b - a; 
+            });
+
+            console.log("Números en orden decreciente: " + numeros.join(", "));
+        </script>
+    </body>
+</html>

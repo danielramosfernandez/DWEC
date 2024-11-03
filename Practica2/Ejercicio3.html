@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <script>
+            function verifica_tres(num,num2,num3){  
+                if(num>num2&&num>num3){ 
+                    document.write("El numero más grande es ", num); 
+                }else if(num2>num&&num2>num3){ 
+                    document.write("El número mas grande es ", num2); 
+                }else{ 
+                    document.write("El numero más grande es ", num3);
+                }
+                
+            } 
+            function introducir(){ 
+                let num= parseInt(prompt("Introduzca el número que quiere comprobar: ")); 
+                let num2= parseInt(prompt("Introduzca el segundo número que quiere comprobar: "));
+                let num3= parseInt(prompt("Introduzca el tercer número que quiere comprobar: "));
+                
+                if (!isNaN(num) && !isNaN(num2) && !isNaN(num3)) {
+                    verifica_tres(num, num2, num3);
+                } else {
+                    document.write("Por favor, introduzca números válidos.");
+                }
+
+            } 
+            
+            introducir()
+        </script>
+    </body>
+</html>

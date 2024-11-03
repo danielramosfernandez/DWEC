@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <script>
+            function depurarOperador(operador) {
+
+    const operadoresValidos = ['+', '-', '*', '/'];
+
+    if (operadoresValidos.includes(operador)) {
+        return `Operador válido: ${operador}`;
+    } else {
+        return "Operador no válido. Introduzca uno de los siguientes: +, -, *, /";
+    }
+}
+
+const caracter = prompt("Introduce un carácter de operación (+, -, *, /):");
+const resultado = depurarOperador(caracter);
+alert(resultado);
+
+        </script>
+    </body>
+</html>

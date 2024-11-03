@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Comparación de Caracteres</title>
+</head>
+<body>
+
+<script>
+    function caracterMayor(caracter1, caracter2) {
+        if (caracter1 > caracter2) {
+            return caracter1;
+        } else if (caracter2 > caracter1) {
+            return caracter2;
+        } else {
+            return "Ambos caracteres son iguales.";
+        }
+    }
+
+    function comprobarCaracteres() {
+       
+        let caracter1 = prompt("Introduzca el primer carácter:");
+        let caracter2 = prompt("Introduzca el segundo carácter:");
+
+        if (caracter1 && caracter2 && caracter1.length === 1 && caracter2.length === 1) {
+            let mayor = caracterMayor(caracter1, caracter2);
+            alert(`El carácter mayor es: ${mayor}`);
+        } else {
+            alert("Por favor, introduzca dos caracteres válidos (un solo carácter cada uno).");
+        }
+    }
+
+    comprobarCaracteres();
+</script>
+
+</body>
+</html>

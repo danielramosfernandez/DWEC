@@ -1,0 +1,32 @@
+<html>
+
+<body>
+
+<script>
+    function verificarNumero(numero) {
+        if (!isNaN(numero) && numero !== "") {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+
+    function introducirNumero() {
+        
+        let entrada = prompt("Introduzca un número:");
+
+        if (verificarNumero(entrada)) {
+      
+            let numero = parseFloat(entrada);
+            alert(`El número introducido es: ${numero}`);
+        } else {
+         
+            alert("Por favor, introduzca un número válido.");
+        }
+    }
+
+    introducirNumero();
+</script>
+
+</body>
+</html>

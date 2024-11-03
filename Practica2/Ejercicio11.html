@@ -1,0 +1,34 @@
+<html>
+    <body>
+        <script>
+            function calcular(numero1, numero2, operador) {
+    switch (operador) {
+        case '+':
+            return numero1 + numero2;
+        case '-':
+            return numero1 - numero2;
+        case '*':
+            return numero1 * numero2;
+        case '/':
+            
+            if (numero2 === 0) {
+                return "Error: División por cero.";
+            }
+            return numero1 / numero2;
+        default:
+            return "Operador no válido. Introduzca uno de los siguientes: +, -, *, /";
+    }
+}
+
+
+const num1 = parseFloat(prompt("Introduce el primer número:"));
+const num2 = parseFloat(prompt("Introduce el segundo número:"));
+const operador = prompt("Introduce un carácter de operación (+, -, *, /):");
+
+const resultado = calcular(num1, num2, operador);
+
+alert(`El resultado es: ${resultado}`);
+
+        </script>
+    </body>
+</html>

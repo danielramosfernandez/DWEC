@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Comprobación de Carácter Alfabético</title>
+</head>
+<body>
+
+<script>
+    function esCaracterAlfabetico(caracter) {
+      
+        return /^[a-zA-Z]$/.test(caracter);
+    }
+
+    function comprobarCaracter() {
+ 
+        let caracter = prompt("Introduzca un carácter:");
+
+        if (caracter && esCaracterAlfabetico(caracter)) {
+            alert(`El carácter "${caracter}" es alfabético.`);
+        } else {
+            alert("Por favor, introduzca un carácter alfabético válido.");
+        }
+    }
+
+  
+    comprobarCaracter();
+</script>
+
+</body>
+</html>

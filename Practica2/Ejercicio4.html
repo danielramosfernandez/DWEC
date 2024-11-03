@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <script> 
+            function crear_mail(nombre,servidor,dominio){ 
+                document.write(nombre,"@",servidor,".",dominio);
+            }
+            
+            function introducir(){ 
+                let nombre=prompt("Introduzca su nombre: "); 
+                let servidor=prompt("Introduzca el nombre de del servidor: ");
+                let dominio=prompt("Introduzca el nombre del dominio: ")
+                
+                if (!isNaN(nombre) && !isNaN(servidor) && !isNaN(dominio)) {
+                    let correo = crear_mail(nombre, servidor, dominio);
+                    alert("La dirección de correo electrónico es: " + correo);
+                } else {
+                    document.write("Por favor, introduzca valores correctos.");
+                }
+
+            } 
+            
+            introducir()
+        </script>
+    </body>
+</html>

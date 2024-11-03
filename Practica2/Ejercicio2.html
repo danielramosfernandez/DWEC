@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <script>
+            function verifica_tres(num){  
+                if(num%3===0){ 
+                    return true 
+                }else{ 
+                    return false
+                }
+                
+            } 
+            function introducir(){ 
+                let rep=true 
+                while(rep){
+                let num= parseInt(prompt("Introduzca el número que quiere comprobar: ")); 
+                
+                if(!isNaN(num)){  
+                    if(verifica_tres(num)){ 
+                        document.write("El número ", num, " es multiplo de tres <br>")
+                    }else{ 
+                        document.write("El número ",num, " no es multiplo de tres ")
+                    }
+                }else{ 
+                    document.write("Por favor introduzca un número valido")
+                }
+                
+                rep=confirm("¿Quiere repetir?")
+            } 
+            }
+            introducir()
+        </script>
+    </body>
+</html>
