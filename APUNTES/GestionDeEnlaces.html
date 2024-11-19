@@ -1,0 +1,18 @@
+<html>
+    <body>
+        Motor de búsqueda <a href="http://www.google.es" id="google">Este es Google</a>
+        <br> 
+        Sitio de información<a href="http://www.yahoo.es" id="yahoo">Yahoo</a>
+        <br>
+        Enciclopedia<a href="http://www.wikipedia.es " id="wikipedia">Wikipedia</a>
+        <script>
+            document.write("<br></br>"); 
+            //Se muestra el número de enlaces
+            document.write("Número de enlace(s) del documento: ", document.links.length,"<br>"); 
+            //Se muestra el id del primer enlace
+            document.write("Id del segundo enlace del documento:",document.links[1].id,"<br>"); 
+            //Se muestra la URL del  tercer enlace
+            document.write("URL del tercer enlace del documento: ",document.links[2].href);
+        </script>
+    </body>
+</html>
