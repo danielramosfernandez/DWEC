@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <script>
+            function eliminar(array, elemento) { 
+                var result = [];  // Creamos un array vacío para almacenar los elementos que no vamos a eliminar
+                for (var i = 0; i < array.length; i++) {  // Iteramos sobre cada elemento del array
+                    if (array[i] !== elemento) {  // Si el elemento en la posición 'i' no es igual al valor que queremos eliminar
+                        result.push(array[i]);  // Lo agregamos al array 'result'
+                    }
+                }
+                return result;  // Devolvemos el array modificado (sin el elemento eliminado)
+            }
+
+            var array = [1, 2, 3, 4, 5];  // Creamos un array con algunos elementos
+            array = eliminar(array, 3);  // Llamamos a la función 'eliminar' para eliminar el número 3
+            document.write(array);  // Imprimimos el array modificado, debería mostrar [1, 2, 4, 5]
+        </script>
+    </body>
+</html>

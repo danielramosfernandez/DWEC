@@ -1,0 +1,71 @@
+<html>
+    <body>
+        <script>
+             
+             class empresa{ 
+                constructor(cif,ciclo){ 
+                    this.cif=cif; 
+                    this.ciclo=ciclo; 
+                }
+             }
+             class alumno{ 
+                constructor(dni,ciclo,anioFinalizacion){ 
+                    this.dni=dni; 
+                    this.ciclo=ciclo; 
+                    this.anioFinalizacion=anioFinalizacion; 
+                }
+             }
+        
+             class gestionEmpresas{ 
+                constructor(){ 
+                    this.empresas=[]; 
+                }
+            alta(cif,ciclo){ 
+                let nuevaEmpresa= new empresa(cif, ciclo); 
+                this.empresas.push(nuevaEmpresa); 
+                document.write(`La nueva empresa tiene un CIF: ${cif} y un ciclo: ${ciclo}<br>`);
+
+            }
+            baja(cif){ 
+                this.empresas=this.empresas.filter(u=>u.cif!==cif); 
+                document.write(`La empresa con CIF: ${cif}, ha sido eliminada correctamente<br>`)
+            } 
+          
+             } 
+             class gestionAlumnos{ 
+                constructor(){ 
+                    this.alumnos=[]; 
+                }
+            alta(dni,ciclo,anioFinalizacion){ 
+                let nuevoAlumno= new alumno(dni,ciclo,anioFinalizacion); 
+                this.alumnos.push(nuevoAlumno); 
+                document.write(`El alumno con DNI: ${dni}, iba al ciclo: ${ciclo} y lo termino en: ${anioFinalizacion}<br>`);
+            } 
+            baja(ciclo,anioFinalizacion){ 
+                this.alumnos=this.alumnos.filter(u=>u.ciclo!==ciclo )
+                this.alumnos=this.alumnos.filter(a=>a.anioFinalizacion!==anioFinalizacion) 
+                document.write(`El alumno del ciclo: ${ciclo} y que finalizo en:${anioFinalizacion}, ha sido eliminado correctamente <br>` );
+            } 
+            busqueda(ciclo,anioFinalizacion){ 
+                let u = this.alumnos.find(u=>u.ciclo===ciclo && u.anioFinalizacion===anioFinalizacion); 
+                u? document.write(`Alumno encontrado <br>`):document.write(`Usuario no encontrado <br> `); 
+            }
+            listado(){ 
+                    this.alumnos.length > 0 
+                        ? this.alumnos.forEach(u => document.write(`El alumno con DNI: ${u.dni}, del ciclo: ${u.ciclo}, acabó en: ${u.anioFinalizacion}<br>`))
+                        : document.write("No hay alumnos registrados<br>");   
+                }
+            
+             } 
+             let gEmp= new gestionEmpresas(); 
+             let gAlu= new gestionAlumnos(); 
+             gEmp.alta("xx.xxxx.xxxxx.xxxx", "DAW");
+             gAlu.alta("xx.xxx.xxx-x", "DAW", "2012");  
+             gAlu.listado(); 
+             gAlu.busqueda("DAW","2012"); 
+             gAlu.baja("DAW","2012"); 
+             gAlu.listado();
+
+        </script>
+    </body>
+</html>

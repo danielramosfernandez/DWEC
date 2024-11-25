@@ -1,0 +1,83 @@
+<html>
+    <body>
+        <script>
+            // Clase para almacenar información del usuario
+            class Usuario {
+                constructor(usuario, clave, preguntaSeguridad, respuesta) {
+                    this.usuario = usuario;
+                    this.clave = clave;
+                    this.preguntaSeguridad = preguntaSeguridad;
+                    this.respuesta = respuesta;
+                }
+            }
+
+            // Clase para gestionar usuarios
+            class GestionUsuarios {
+                constructor() {
+                    this.usuarios = [];
+                }
+
+                // Método para dar de alta un nuevo usuario
+                alta(usuario, clave, preguntaSeguridad, respuesta) {
+                    let nuevoUsuario = new Usuario(usuario, clave, preguntaSeguridad, respuesta);
+                    this.usuarios.push(nuevoUsuario);
+                    document.write(`Usuario ${usuario} agregado de manera correcta.<br>`);
+                }
+
+                // Método para dar de baja un usuario
+                baja(usuario) {
+                    this.usuarios = this.usuarios.filter(u => u.usuario !== usuario);
+                    document.write(`Usuario ${usuario} eliminado de manera correcta.<br>`);
+                }
+
+                // Método para modificar un usuario
+                modificar(usuario, clave, preguntaSeguridad, respuesta) {
+                    let u = this.usuarios.find(u => u.usuario === usuario);
+                    if (u) {
+                        u.clave = clave || u.clave;
+                        u.preguntaSeguridad = preguntaSeguridad || u.preguntaSeguridad;
+                        u.respuesta = respuesta || u.respuesta;
+                        document.write(`Usuario ${usuario} modificado.<br>`);
+                    } else {
+                        document.write(`Usuario ${usuario} no encontrado.<br>`);
+                    }
+                }
+
+                // Método para consultar un usuario
+                consulta(usuario) {
+                    let u = this.usuarios.find(u => u.usuario === usuario);
+                    u ? document.write(`Usuario: ${u.usuario}, Pregunta: ${u.preguntaSeguridad}<br>`) : document.write(`Usuario ${usuario} no encontrado.<br>`);
+                }
+
+                // Método para listar todos los usuarios
+                listado() {
+                    this.usuarios.length > 0 
+                        ? this.usuarios.forEach(u => document.write(`Usuario: ${u.usuario} y su pregunta clave es: ${u.preguntaSeguridad}<br>`))
+                        : document.write("No hay usuarios registrados.<br>");
+                }
+            }
+
+            // Crear instancia de GestionUsuarios
+            let gestion = new GestionUsuarios();
+
+            // Agregar usuarios
+            gestion.alta("Dani", "1234", "¿Cuál es tu color favorito?", "rojo");
+            gestion.alta("Maria", "abcd", "¿Dónde naciste?", "Aviles");
+
+            // Mostrar listado de usuarios
+            gestion.listado();
+
+            // Modificar un usuario
+            gestion.modificar("Dani", "1234", "¿Cuál es tu mascota?", "Perro");
+
+            // Consultar un usuario
+            gestion.consulta("Maria");
+
+            // Eliminar un usuario
+            gestion.baja("Maria");
+
+            // Mostrar listado actualizado
+            gestion.listado();
+        </script>
+    </body>
+</html>

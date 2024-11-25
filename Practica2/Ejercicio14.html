@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <script>
+            class Alumno { 
+                constructor(nombre = '', edad = 0) {
+                    this.nombre = nombre; 
+                    this._edad = edad;  // Usamos un prefijo "_" para diferenciar la propiedad privada
+                }
+
+                // Getter para acceder a la edad
+                get edad() { 
+                    return this._edad;
+                }
+
+                // Setter para modificar la edad
+                set edad(eda) { 
+                    this._edad = eda;
+                }
+            }
+
+            // Crear una instancia correctamente con el nombre de clase en mayúscula
+            let alumn = new Alumno('Daniel', 20); 
+
+            // Mostrar la información con alertas
+            alert(alumn.nombre);  // 'Daniel'
+            alert(alumn.edad);    // 20
+        </script>
+    </body>
+</html>
