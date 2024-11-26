@@ -14,29 +14,60 @@ b) Que los tipos son adecuados a cada campo.
 c) Que la fecha de pedido tiene un formato correcto.
 d) Que la fecha de pedido no es posterior al día en el que se registra.
 */ 
-class pedido{ 
-    constructor(numPedido,cliente,fechaPedido,procesado,servicio){ 
-        this.numPedido=numPedido; 
-        this.cliente=cliente; 
-        this.fechaPedido=new Date(fechaPedido); 
-        this.procesado=procesado; 
-        this.servicio=servicio; 
-    }
-} 
-class gestionPedidos{ 
-    constructor(){ 
-        this.pedidos=[];
-    }
+let pedidos=[]; 
 
-alta(numPedido,cliente,fechaPedido,procesado,servicio){ 
-    let nuevoPedido=new pedido(numPedido,cliente,fechaPedido,procesado,servicio); 
-    this.pedidos.push(nuevoPedido); 
+function registroPedidos(guardado){ 
+    guardado.preventDefault();//Uso esta función para evitar que el navegador haga alguna interrupcion como una recarga 
+    const numPedido = parseInt(document.getElementById('numero').value); 
+    const cliente =document.getElementById('cliente').value;    
+    const fechaPedido = document.getElementById('fechaPedido').value;  
+    const procesado = document.getElementById('procesado').checked; 
+    const servido= document.getElementById('servido').checked; 
+
+    registrarPedido({numPedido,cliente,fechaPedido,procesado,servido}); 
 } 
-baja(numPedido){ 
-    this.pedidos=this.pedidos.filter(u=>u.numPedido!==numPedido);  
+function guradarPedidos(){
+    localStorage.setItem('Pedidos', JSON.stringify(Pedidos)); 
+}  
+function alta(pedidosAgregado){ 
+    if (pedidos.find(u=>u.numPedido===pedidosAgregado.numPedido)){ 
+        return alert("El pedido ya fue registrado anteriormente"); 
+
+    }
+    if(pedidosAgregado.numPedido<1|| numPedido.isInteger(pedidosAgregado.numPedido)){ 
+        return alert('El número de pedido debe ser mayor de 1 y no puede ser dedcimal'); 
+    } 
+    pedidos.push(pedidosAgregado); 
+    guradarPedidos(); 
+    alert("Se ha agregado correctamente un pedido"); 
 }
-consulta(numPedido){ 
-    let u=this.pedidos.find(u=>u.numPedido===numPedido); 
-    u? document.write('Pedido encontrado'): document.write('El pedido no está localizado'); 
+function baja(numPedido){ 
+    const num =pedidos.findIndex(u=>u.numPedido===numPedido); 
+    if (num!==-1){ 
+        pedidos.splice(num,1); 
+        guradarPedidos(); 
+        alert('El pedido ${numPedido} fue eliminado de manera correcta'); 
+    }else{ 
+        alert('No se ha podido encontrar el pedido con número ${numPedido}'); 
+    }
+} 
+function modificado(guardado){ 
+    guardado.preventDefault(); 
+    const numPedido = parseInt(document.getElementById('numero').value); 
+    const cliente =document.getElementById('cliente').value;    
+    const fechaPedido = document.getElementById('fechaPedido').value;  
+    const procesado = document.getElementById('procesado').checked; 
+    const servido= document.getElementById('servido').checked;  
+    
+
+const modificado=pedidos.findIndex(u=>u.numPedido===numPedido); 
+if (modificado===-1){
+    alert('El pedido que esta siendo modificado no existe. Por favor introduzca uno correcto'); 
+    return; 
 }
-}
+ pedidos[modificado]={numPedido,cliente,fechaPedido,procesado,servido}; 
+ localStorage.setItem('pedidos',JSON.stringify(pedidos)); 
+
+ alert('Se ha modificado correctamente el pedido');
+    
+} 
