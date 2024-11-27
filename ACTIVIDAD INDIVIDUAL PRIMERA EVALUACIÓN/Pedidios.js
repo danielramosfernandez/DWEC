@@ -18,7 +18,7 @@ let pedidos=[];
 
 function registroPedidos(guardado){ 
     guardado.preventDefault();//Uso esta función para evitar que el navegador haga alguna interrupcion como una recarga 
-    const numPedido = parseInt(document.getElementById('numero').value); 
+    const numPedido = parseInt(document.getElementById('numPedido').value); 
     const cliente =document.getElementById('cliente').value;    
     const fechaPedido = document.getElementById('fechaPedido').value;  
     const procesado = document.getElementById('procesado').checked; 

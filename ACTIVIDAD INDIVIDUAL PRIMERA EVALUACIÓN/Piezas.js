@@ -20,31 +20,12 @@ b) Que el número de pedido introducido ya existe en la lista de pedidos.
 c) Que los tipos son adecuados a cada campo.
 d) Que se tienen en cuenta los límites inferiores de los campos numéricos (en medidas, que sean
 mayores que 0).*/ 
-class pieza{ 
-    constructor(numPieza,numPedido,largo,ancho,grosor,color,ambasCaras,cortada){
-        this.numPieza=numPieza; 
-        this.numPedido=numPedido; 
-        this.largo=largo; 
-        this.ancho=ancho; 
-        this.grosor=grosor; 
-        this.color=color; 
-        this.ambasCaras=ambasCaras; 
-        this.cortada=cortada;
-    }
-} 
-class gestionPiezas{ 
-    constructor(){ 
-        this.piezas=[]; 
-    }
-    alta(numPieza,numPedido,largo,ancho,grosor,color,ambasCaras,cortada){ 
-        let nuevaPieza=new pieza(numPieza,numPedido,largo,ancho,grosor,color,ambasCaras,cortada);
-        this.piezas.push(nuevaPieza); 
-    }
-    baja(numPieza){ 
-        this.piezas=this.piezas.filter(u=>u.numPieza!==numPieza); 
-    } 
-    consulta(numPieza){ 
-        let u=this.piezas.find(u=>u.numPieza===numPieza); 
-        u?document.write('Pieza encontrada'):document.write('Pieza no encontrada');
-    }
+let piezas=[]; 
+function registroPiezas(guarda){ 
+    guarda.preventDefault(); 
+    const numPieza = parseInt(document.getElementById('numPieza').value); 
+    const numPedido= parseInt(document.getElementById('numPedido').value); 
+    const largo = parseInt(document.getElementById('largo').value); 
+    const ancho= parseInt(document.getElementById('ancho').value); 
+    const color=document.getElement
 }
