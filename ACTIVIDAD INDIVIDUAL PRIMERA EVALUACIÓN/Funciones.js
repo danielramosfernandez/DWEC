@@ -29,12 +29,14 @@ function almacenadas(){
        //A continuación lo guardamos en almacenar 
         almacenar(); 
 } 
+
 function reiniciar(){ 
     //Aqui reinicio el alamacenamiento de PIEZAS y PEDIDOS 
     localStorage.removeItem("pedidos"); 
     //y ahora llamamos al metodo anterior para almacenar la nueva información 
     almacenadas(); 
 }
+
 function recuperacionPedidos(){ 
     //Dentro de este metodo lo que har´e será almacenar la información que se introdujo en almacenadas 
     //recuperamos los PEDIDOS
