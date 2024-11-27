@@ -20,6 +20,18 @@ export class Pedidos{
         this.cliente=cliente; 
         this.fechaPedido=fechaPedido; 
         this.procesado=procesado;
-        this.servicio=this.servicio;
+        this.servido=servido;
+    }
+}
+export class Piezas{ 
+    constructor(numPieza,numPedi,largo,ancho,grosor,color,ambasCaras,cortada){ 
+        this.numPieza=numPieza; 
+        this.numPedi=numPedi; 
+        this.largo=largo; 
+        this.ancho=ancho; 
+        this.grosor=grosor; 
+        this.color=color; 
+        this.ambasCaras=ambasCaras; 
+        this.cortada=cortada;
     }
 }
