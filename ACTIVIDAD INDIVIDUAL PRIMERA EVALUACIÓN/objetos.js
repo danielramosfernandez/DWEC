@@ -39,7 +39,7 @@ export class Pedidos {
     // Validación para el cliente (máx. 50 caracteres)
     set Cliente(valor) {
       if (typeof valor !== "string" || valor.trim().length === 0 || valor.length > 50) {
-        throw "El nombre del cliente debe ser una cadena de hasta 50 caracteres.";
+        alert ("El nombre del cliente debe ser una cadena de hasta 50 caracteres.");
       }
       this.cliente = valor.trim();
     }
@@ -56,7 +56,7 @@ export class Pedidos {
         isNaN(fechaIngresada) ||
         fechaIngresada > fechaActual
       ) {
-        throw "La fecha de pedido debe tener un formato válido y no ser posterior a hoy.";
+        alert ("La fecha de pedido debe tener un formato válido y no ser posterior a hoy.");
       }
       this.fechaPedido = fechaIngresada;
     }
@@ -68,7 +68,7 @@ export class Pedidos {
     // Booleano para procesado
     set Procesado(valor) {
       if (typeof valor !== "boolean") {
-        throw "Procesado debe ser un valor booleano.";
+        alert ("Procesado debe ser un valor booleano.");
       }
       this.procesado = valor;
     }
@@ -80,7 +80,7 @@ export class Pedidos {
     // Booleano para servido
     set Servido(valor) {
       if (typeof valor !== "boolean") {
-        throw "Servido debe ser un valor booleano.";
+        alert ("Servido debe ser un valor booleano.");
       }
       this.servido = valor;
     }
@@ -106,7 +106,7 @@ export class Piezas {
     // Validación para número de pieza
     set NumPieza(valor) {
       if (!Number.isInteger(valor) || valor < 1) {
-        throw "El número de pieza debe ser un entero mayor o igual que 1.";
+        alert ("El número de pieza debe ser un entero mayor o igual que 1.");
       }
       this.numPieza = valor;
     }
@@ -118,7 +118,7 @@ export class Piezas {
     // Validación para el número de pedido asociado
     set NumPedi(valor) {
       if (!Number.isInteger(valor) || valor < 1) {
-        throw "El número de pedido asociado debe ser un entero mayor o igual que 1.";
+        alert ("El número de pedido asociado debe ser un entero mayor o igual que 1.");
       }
       this.numPedi = valor;
     }
@@ -130,7 +130,7 @@ export class Piezas {
     // Validaciones para largo, ancho y grosor (deben ser números positivos)
     set Largo(valor) {
       if (typeof valor !== "number" || valor <= 0) {
-        throw "El largo debe ser un número positivo.";
+        alert ("El largo debe ser un número positivo.");
       }
       this.largo = valor;
     }
@@ -141,7 +141,7 @@ export class Piezas {
   
     set Ancho(valor) {
       if (typeof valor !== "number" || valor <= 0) {
-        throw "El ancho debe ser un número positivo.";
+        alert ("El ancho debe ser un número positivo.");
       }
       this.ancho = valor;
     }
@@ -152,7 +152,7 @@ export class Piezas {
   
     set Grosor(valor) {
       if (typeof valor !== "number" || valor <= 0) {
-        throw "El grosor debe ser un número positivo.";
+        alert ("El grosor debe ser un número positivo.");
       }
       this.grosor = valor;
     }
@@ -164,7 +164,7 @@ export class Piezas {
     // Validación de color (cadena no vacía)
     set Color(valor) {
       if (typeof valor !== "string" || valor.trim() === "") {
-        throw "El color debe ser una cadena no vacía.";
+        alert ("El color debe ser una cadena no vacía.");
       }
       this.color = valor.trim();
     }
@@ -176,7 +176,7 @@ export class Piezas {
     // Booleanos para ambasCaras y cortada
     set AmbasCaras(valor) {
       if (typeof valor !== "boolean") {
-        throw "Ambas caras debe ser un valor booleano.";
+        alert ("Ambas caras debe ser un valor booleano.");
       }
       this.ambasCaras = valor;
     }
@@ -187,7 +187,7 @@ export class Piezas {
   
     set Cortada(valor) {
       if (typeof valor !== "boolean") {
-        throw "Cortada debe ser un valor booleano.";
+        alert ("Cortada debe ser un valor booleano.");
       }
       this.cortada = valor;
     }
