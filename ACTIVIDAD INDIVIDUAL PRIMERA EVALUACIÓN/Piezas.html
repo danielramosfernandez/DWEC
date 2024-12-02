@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="./Funciones.js"></script>
-    <script src="./Eventos.js"></script>
-
+    <script src="./Eventos.js" defer></script>
     <title>AvileSA: Piezas</title>
   </head>
   <body>
@@ -23,27 +22,28 @@
           <th>Cortada</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="tblBodyPiezas"></tbody>
     </table>
-    <button id="btnAnyadirPieza">Añadir Pieza</button>
-    <button id="btnEliminarPieza">Eliminar Pieza</button>
-    <button id="btnModificarPieza">Modificar Pieza</button>
-    <div id="editPieza" style="display: none">
+    <button id="btnAnyadir" aria-label="Añadir Pieza">Añadir Pieza</button>
+    <button id="btnEliminar" aria-label="Eliminar Pieza">Eliminar Pieza</button>
+    <button id="btnModificar" aria-label="Modificar Pieza">Modificar Pieza</button>
+    
+    <div id="editPieza" style="display: none;">
       <h2>Editar Pieza</h2>
       <label for="txtNumPieza">Número de Pieza:</label>
-      <input type="number" step="1" min="1" id="txtNumPieza" required />
+      <input type="number" id="txtNumPieza" min="1" required />
       <br /><br />
       <label for="cbNumPedido">Número de Pedido:</label>
       <input type="number" id="cbNumPedido" required />
       <br /><br />
       <label for="cbLargo">Largo (cm):</label>
-      <input type="number" step="0.1" min="0" id="cbLargo" required />
+      <input type="number" id="cbLargo" step="0.1" min="0" required />
       <br /><br />
       <label for="cbAncho">Ancho (cm):</label>
-      <input type="number" step="0.1" min="0" id="cbAncho" required />
+      <input type="number" id="cbAncho" step="0.1" min="0" required />
       <br /><br />
       <label for="cbGrosor">Grosor (cm):</label>
-      <input type="number" step="0.1" min="0" id="cbGrosor" required />
+      <input type="number" id="cbGrosor" step="0.1" min="0" required />
       <br /><br />
       <label for="txtColor">Color:</label>
       <input type="text" id="txtColor" required />
@@ -56,16 +56,12 @@
       <br /><br />
       <button id="btnAccionPieza">Guardar</button>
     </div>
+    
     <script>
-      document.addEventListener(
-        "DOMContentLoaded",
-        () => {
-          cargarDatosPiezas();
-          loadControls(); // Cargar controles adicionales si es necesario
-          loadEvents();
-        },
-        false
-      );
+      document.addEventListener("DOMContentLoaded", () => {
+        cargarDatosPiezas(); // Cargar las piezas en la tabla
+        loadEvents(); // Asignar eventos a los botones
+      });
     </script>
   </body>
 </html>

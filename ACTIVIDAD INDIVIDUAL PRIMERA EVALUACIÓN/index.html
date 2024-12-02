@@ -3,29 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./Funciones.js"></script>
-    <title>AvileSA</title> 
+    <script type="module" src="./Funciones.js" defer></script>
+    <title>AvileSA</title>
     <script>
-        const resetData = () => { 
-            reinicializa(); 
-        }; 
+      const resetData = () => {
+        reinicializa();
+      };
     </script>
   </head>
   <body>
-    <a href="Pedidos.html" target="_blank">Pedidos</a>
-    <br/>
-    <a href="Piezas.html" target="_blank">Piezas</a>
-    <br/>
-    <button id="reset">Reinicializa</button>
+    <h1>Piezas y Pedidos</h1>
+    <nav>
+      <a href="Pedidos.html" target="_blank" aria-label="Gestión de Pedidos">Pedidos</a>
+      <br />
+      <a href="Piezas.html" target="_blank" aria-label="Gestión de Piezas">Piezas</a>
+    </nav>
+    <br />
+    <button id="reset" aria-label="Reiniciar todos los datos">Reinicializa</button>
     
     <script>
-      document.addEventListener("DOMContentLoaded", () => { 
-        let pedido = getPedido(); 
-        if (!pedido) inicializa(); 
-      }); 
+      document.addEventListener("DOMContentLoaded", () => {
+        const pedido = getPedido(); 
+        if (!pedido) inicializa();  
+      });
 
-      // Cambié el listener para que solo reaccione al clic en el botón de reinicialización
-      document.getElementById('reset').addEventListener('click', resetData, false);
+      document.getElementById("reset").addEventListener("click", resetData);
     </script>
   </body>
 </html>

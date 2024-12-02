@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="./Funciones.js"></script>
-    <script src="./Eventos.js"></script>
-
+    <script src="./Eventos.js" defer></script>
     <title>AvileSA: Pedidos</title>
   </head>
   <body>
@@ -20,17 +19,16 @@
           <th>Servido</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="tblBodyPedidos"></tbody>
     </table>
-    <button id="btnAnyadirPedido">Añadir Pedido</button>
-    <button id="btnEliminarPedido">Eliminar Pedido</button>
-    <button id="btnModificarPedido">Modificar Pedido</button>
-    
+    <button id="btnAnyadir" aria-label="Añadir Pedido">Añadir Pedido</button>
+    <button id="btnEliminar" aria-label="Eliminar Pedido">Eliminar Pedido</button>
+    <button id="btnModificar" aria-label="Modificar Pedido">Modificar Pedido</button>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-          cargarDatosPedidos(); // Cargar los pedidos en la tabla
-          loadControls(); // Cargar controles adicionales si es necesario
-          loadEvents(); // Cargar los eventos asociados a los botones
+        loadData();  // Llama a tu función para cargar datos
+        loadEvents(); // Llama a tu función para cargar eventos
       });
     </script>
   </body>

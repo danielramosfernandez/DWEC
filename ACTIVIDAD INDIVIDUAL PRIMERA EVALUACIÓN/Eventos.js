@@ -1,142 +1,129 @@
 // Obtener los controles del formulario
-const controlesPedidos = () => { 
+const controlesPedidos = () => {
   //!Controlador para los pedidos
-  const txtNumPedido = document.getElementById("txtNumPedido"); 
-  const cbCliente = document.getElementById("cbCliente"); 
-  const txtFechaPedido = document.getElementById("txtFechaPedido"); 
-  const btnProcesado = document.getElementById("btnProcesado"); 
-  const btnServido = document.getElementById("btnServido"); 
+  const txtNumPedido = document.getElementById("txtNumPedido");
+  const cbCliente = document.getElementById("cbCliente");
+  const txtFechaPedido = document.getElementById("txtFechaPedido");
+  const btnProcesado = document.getElementById("btnProcesado");
+  const btnServido = document.getElementById("btnServido");
   const btnAnyadir = document.getElementById("btnAnyadir");
   const btnEliminar = document.getElementById("btnEliminar");
   const btnModificar = document.getElementById("btnModificar");
   const editPedido = document.getElementById("editPedido");
 
   return {
-      txtNumPedido, 
-      cbCliente, 
-      txtFechaPedido, 
-      btnProcesado, 
-      btnServido, 
-      btnAnyadir, 
-      btnEliminar, 
-      btnModificar, 
-      editPedido
+    txtNumPedido,
+    cbCliente,
+    txtFechaPedido,
+    btnProcesado,
+    btnServido,
+    btnAnyadir,
+    btnEliminar,
+    btnModificar,
+    editPedido,
   };
 };
 
-const showAnyadirPedidoEvt = () => {  
-  //!Constante que sirve para mostrar la función de añadir pedido
+// Función para mostrar el formulario de añadir pedido
+const showAnyadirPedidoEvt = () => {
   const { editPedido } = controlesPedidos();
-  if (editPedido) { 
-      enableActions(false); 
-      editPedido.style.display = "block"; 
-      const hijos = editPedido.childNodes; 
-      for (let h of hijos) { 
-          h.value = ""; 
-          h.disabled = false;
-      }
+  if (editPedido) {
+    enableActions(false);
+    editPedido.style.display = "block";
+    const hijos = editPedido.childNodes;
+    for (let h of hijos) {
+      h.value = "";
+      h.disabled = false;
+    }
   }
 };
 
-const showEditarPedidoEvt = () => { 
-  //!Constante para mostrar la función de modificación de pedido
-  const { txtNumPedido, editPedido } = controlesPedidos();
-  let num = prompt("Introduce el número de pedido", ""); 
-  if (isNaN(num)) { 
-      alert("El número introducido no es válido"); 
-  } else if (num) { 
-      num = parseInt(num); 
-      if (!pedidoExistente(num)) { 
-          alert("El pedido que has introducido no existe"); 
-      } else if (editPedido) { 
-          editPedido.style.display = "block"; 
-          txtNumPedido.disabled = true; 
-          txtNumPedido.value = num; 
-          enableActions(false); 
-      }
-  }
-};
-
+// Función para habilitar o deshabilitar los botones de acción
 const enableActions = (enabled) => {
   const { btnProcesado, btnServido } = controlesPedidos();
-  btnProcesado.disabled = !enabled; 
-  btnServido.disabled = !enabled; 
+  btnProcesado.disabled = !enabled;
+  btnServido.disabled = !enabled;
 };
 
+// Función para manejar el evento de añadir un pedido
 const accionPedidoEvt = () => {
   const { txtNumPedido, cbCliente, txtFechaPedido, btnProcesado, btnServido } = controlesPedidos();
+
   if (txtNumPedido) {
-      let numPedido = parseInt(txtNumPedido.value);
-      if (isNaN(numPedido)) {
-          alert("El número de pedido no es válido");
-      } else if (numPedido < 1) {
-          alert("El número de pedido debe ser mayor o igual a 1");
-      } else if (txtFechaPedido.value == "") {
-          alert("La fecha de pedido no es válida");
-      } else if (!esFechaValida(txtFechaPedido.value)) {
-          alert("La fecha de pedido no tiene un formato correcto o es posterior al día actual");
+    let numPedido = parseInt(txtNumPedido.value);
+    if (isNaN(numPedido)) {
+      alert("El número de pedido no es válido");
+    } else if (numPedido < 1) {
+      alert("El número de pedido debe ser mayor o igual a 1");
+    } else if (txtFechaPedido.value === "") {
+      alert("La fecha de pedido no es válida");
+    } else if (!esFechaValida(txtFechaPedido.value)) {
+      alert("La fecha de pedido no tiene un formato correcto o es posterior al día actual");
+    } else {
+      if (pedidoExistente(numPedido)) {
+        alert("El número de pedido ya existe");
       } else {
-          if (pedidoExistente(numPedido)) {
-              alert("El número de pedido ya existe");
-          } else {
-              insertarPedido(
-                  numPedido,
-                  cbCliente.value,
-                  txtFechaPedido.value,
-                  btnProcesado.checked,
-                  btnServido.checked
-              );
-          }
-          limpiaFormPedido();
-          enableActions(true);
-          loadData();
+        insertarPedido(
+          numPedido,
+          cbCliente.value,
+          txtFechaPedido.value,
+          btnProcesado.checked,
+          btnServido.checked
+        );
       }
+      limpiaFormPedido();
+      enableActions(true);
+      loadData();
+    }
   }
 };
 
+// Función para limpiar el formulario de pedidos
 const limpiaFormPedido = () => {
   const { editPedido } = controlesPedidos();
   const hijos = editPedido.childNodes;
   for (let h of hijos) {
-      h.value = "";
-      h.checked = false;  // Para checkboxes como "procesado" o "servido"
+    h.value = "";
+    h.checked = false; // Para checkboxes como "procesado" o "servido"
   }
   editPedido.style.display = "none";
 };
 
-const eliminarPedidosEvt = () => { 
-  //!Función para eliminar pedidos
+// Función para eliminar pedidos
+const eliminarPedidosEvt = () => {
   let numPedido = prompt("Introduce número de pedido");
   numPedido = parseInt(numPedido);
 
   if (isNaN(numPedido)) {
-      alert("El número de pedido introducido no es válido");
+    alert("El número de pedido introducido no es válido");
   } else {
-      eliminarPedidoPorNumero(numPedido);
+    eliminarPedidoPorNumero(numPedido);
   }
   loadData();
 };
 
-const modificarPedidosEvt = () => { 
-  //!Función para modificar pedidos
-  let pedidos = getPedidos();
-  console.log(pedidos);
-  loadData();
+// Función para insertar un pedido
+const insertarPedido = (numPedido, cliente, fechaPedido, procesado, servido) => {
+  console.log("Insertando nuevo pedido:", numPedido, cliente, fechaPedido, procesado, servido);
 };
 
-const loadEvents = () => { 
-  //!Carga los eventos de añadir, eliminar y modificar
-  const { btnAnyadir, btnEliminar, btnModificar } = controlesPedidos();
-  if (btnAnyadir) btnAnyadir.addEventListener("click", accionPedidoEvt, false);
-  if (btnEliminar) btnEliminar.addEventListener("click", eliminarPedidosEvt, false);
-  if (btnModificar) btnModificar.addEventListener("click", showEditarPedidoEvt, false);
+// Función para comprobar si un pedido existe
+const pedidoExistente = (numPedido) => {
+  const pedidos = getPedidos();
+  return pedidos.some((pedido) => pedido.numPedido === numPedido);
 };
 
-// Funciones auxiliares
+// Función para obtener los pedidos
+const getPedidos = () => {
+  return [
+    { numPedido: 1, cliente: "Juan Pérez", fechaPedido: "2024-12-01", procesado: true, servido: false },
+    { numPedido: 2, cliente: "Ana Gómez", fechaPedido: "2024-12-02", procesado: false, servido: true },
+  ];
+};
 
-const esFechaValida = (fecha) => { 
-  //!Comprueba si la fecha introducida es válida
-  const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;  // Formato YYYY-MM-DD
+// Función para validar la fecha
+const esFechaValida = (fecha) => {
+  const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!fechaRegex.test(fecha)) return false;
 
   const fechaObj = new Date(fecha);
@@ -145,44 +132,26 @@ const esFechaValida = (fecha) => {
   return fechaObj <= fechaActual;
 };
 
-const eliminarPedidoPorNumero = (numPedido) => {
-  //!Función para eliminar pedido por número
-  console.log("Eliminando pedido con número: " + numPedido);
-};
-
-const insertarPedido = (numPedido, cliente, fechaPedido, procesado, servido) => {
-  //!Función para insertar un pedido
-  console.log("Insertando nuevo pedido:", numPedido, cliente, fechaPedido, procesado, servido);
-};
-
-const getPedidos = () => {
-  //!Función para obtener los pedidos
-  return [
-      { numPedido: 1, cliente: "Juan Pérez", fechaPedido: "2024-12-01", procesado: true, servido: false },
-      { numPedido: 2, cliente: "Ana Gómez", fechaPedido: "2024-12-02", procesado: false, servido: true },
-  ];
-};
-
-const pedidoExistente = (numPedido) => {
-  //!Función para verificar si un pedido existe
-  const pedidos = getPedidos();
-  return pedidos.some(pedido => pedido.numPedido === numPedido);
-};
-
+// Función para cargar los datos
 const loadData = () => {
-  //*Función para cargar o actualizar los datos
   console.log("Datos cargados o actualizados");
 };
 
-// Para las piezas
+// Asignar eventos
+const loadEvents = () => {
+  const { btnAnyadir, btnEliminar, btnModificar } = controlesPedidos();
+  if (btnAnyadir) btnAnyadir.addEventListener("click", showAnyadirPedidoEvt, false);
+  if (btnEliminar) btnEliminar.addEventListener("click", eliminarPedidosEvt, false);
+};
 
-const controlesPiezas = () => { 
-  //!Controlador para las piezas
-  const txtNumPieza = document.getElementById("txtNumPieza"); 
-  const cbNumPedi = document.getElementById("cbNumPedi"); 
-  const cbLargo = document.getElementById("cbLargo"); 
-  const cbAncho = document.getElementById("cbAncho"); 
-  const cbGrosor = document.getElementById("cbGrosor"); 
+// Piezas
+
+const controlesPiezas = () => {
+  const txtNumPieza = document.getElementById("txtNumPieza");
+  const cbNumPedi = document.getElementById("cbNumPedi");
+  const cbLargo = document.getElementById("cbLargo");
+  const cbAncho = document.getElementById("cbAncho");
+  const cbGrosor = document.getElementById("cbGrosor");
   const txtColor = document.getElementById("txtColor");
   const btnAmbasCaras = document.getElementById("btnAmbasCaras");
   const btnCortada = document.getElementById("btnCortada");
@@ -192,92 +161,74 @@ const controlesPiezas = () => {
   const editPieza = document.getElementById("editPieza");
 
   return {
-      txtNumPieza,
-      cbNumPedi,
-      cbLargo,
-      cbAncho,
-      cbGrosor,
-      txtColor,
-      btnAmbasCaras,
-      btnCortada,
-      btnAnyadirPieza,
-      btnEliminarPieza,
-      btnModificarPieza,
-      editPieza
+    txtNumPieza,
+    cbNumPedi,
+    cbLargo,
+    cbAncho,
+    cbGrosor,
+    txtColor,
+    btnAmbasCaras,
+    btnCortada,
+    btnAnyadirPieza,
+    btnEliminarPieza,
+    btnModificarPieza,
+    editPieza,
   };
 };
 
-const showAnyadirPiezaEvt = () => {  
+// Función para mostrar el formulario de añadir pieza
+const showAnyadirPiezaEvt = () => {
   const { editPieza } = controlesPiezas();
-  if (editPieza) { 
-      enableActions(false); 
-      editPieza.style.display = "block"; 
-      const hijos = editPieza.childNodes; 
-      for (let h of hijos) { 
-          h.value = ""; 
-          h.disabled = false;
-      }
+  if (editPieza) {
+    enableActions(false);
+    editPieza.style.display = "block";
+    const hijos = editPieza.childNodes;
+    for (let h of hijos) {
+      h.value = "";
+      h.disabled = false;
+    }
   }
 };
 
-const showEditarPiezaEvt = () => { 
-  const { txtNumPieza, editPieza } = controlesPiezas();
-  let num = prompt("Introduce el número de la pieza", ""); 
-  if (isNaN(num)) { 
-      alert("El número introducido no es válido"); 
-  } else if (num) { 
-      num = parseInt(num); 
-      if (!piezaExistente(num)) { 
-          alert("La pieza que has introducido no existe"); 
-      } else if (editPieza) { 
-          editPieza.style.display = "block"; 
-          txtNumPieza.disabled = true; 
-          txtNumPieza.value = num; 
-          enableActions(false); 
-      }
-  }
-};
-
+// Función para manejar el evento de añadir una pieza
 const accionPiezaEvt = () => {
   const { txtNumPieza, cbNumPedi, cbLargo, cbAncho, cbGrosor, txtColor, btnAmbasCaras, btnCortada } = controlesPiezas();
-  
+
   let numPieza = parseInt(txtNumPieza.value);
-  
   if (isNaN(numPieza) || numPieza < 1) {
-      alert("El número de pieza no es válido o debe ser mayor o igual a 1");
-      return;
+    alert("El número de pieza no es válido o debe ser mayor o igual a 1");
+    return;
   }
 
   if (cbNumPedi.value.trim() === "") {
-      alert("Debe seleccionar un número de pedido");
-      return;
+    alert("Debe seleccionar un número de pedido");
+    return;
   }
 
   if (cbLargo.value.trim() === "" || cbAncho.value.trim() === "" || cbGrosor.value.trim() === "") {
-      alert("Largo, ancho y grosor son obligatorios");
-      return;
+    alert("Largo, ancho y grosor son obligatorios");
+    return;
   }
 
   if (txtColor.value.trim() === "") {
-      alert("Debe especificar un color");
-      return;
+    alert("Debe especificar un color");
+    return;
   }
 
-  // Aquí puedes agregar la validación de si la pieza ya existe
   if (piezaExistente(numPieza)) {
-      alert("El número de pieza ya existe");
-      return;
+    alert("El número de pieza ya existe");
+    return;
   }
 
   insertarPieza(
-      numPieza,
-      cbNumPedi.value,
-      cbLargo.value,
-      cbAncho.value,
-      cbGrosor.value,
-      txtColor.value,
-      btnAmbasCaras.checked,
-      btnCortada.checked
+    numPieza,
+    cbNumPedi.value,
+    cbLargo.value,
+    cbAncho.value,
+    cbGrosor.value,
+    txtColor.value,
+    btnAmbasCaras.checked,
+    btnCortada.checked
   );
 
   limpiaFormPieza();
@@ -285,69 +236,45 @@ const accionPiezaEvt = () => {
   cargarDatosPiezas();
 };
 
+// Función para limpiar el formulario de piezas
 const limpiaFormPieza = () => {
   const { editPieza } = controlesPiezas();
   const hijos = editPieza.childNodes;
   for (let h of hijos) {
-      h.value = "";       // Reinicia valores de input, select, textarea
-      h.checked = false;  // Reinicia checkboxes y radios
+    h.value = "";
+    h.checked = false;
   }
   editPieza.style.display = "none";
 };
 
-const eliminarPiezasEvt = () => { 
-  //! Función para eliminar piezas por número
-  let numPieza = prompt("Introduce el número de la pieza");
-  numPieza = parseInt(numPieza);
-
-  if (isNaN(numPieza)) {
-      alert("El número de pieza introducido no es válido");
-  } else {
-      eliminarPiezaPorNumero(numPieza);
-  }
-  cargarDatosPiezas();
-};
-
-const modificarPiezasEvt = () => { 
-  //! En esta constante se controla la función para modificar piezas
-  let piezas = getPiezas();
-  console.log(piezas);
-  cargarDatosPiezas();
-};
-
-const loadEventsPiezas = () => { 
-  //! Carga los eventos de añadir, eliminar y modificar piezas
-  const { btnAnyadirPieza, btnEliminarPieza, btnModificarPieza } = controlesPiezas();
-  if (btnAnyadirPieza) btnAnyadirPieza.addEventListener("click", accionPiezaEvt, false);
-  if (btnEliminarPieza) btnEliminarPieza.addEventListener("click", eliminarPiezasEvt, false);
-  if (btnModificarPieza) btnModificarPieza.addEventListener("click", showEditarPiezaEvt, false);
-};
-
-const eliminarPiezaPorNumero = (numPieza) => {
-  //! Función para eliminar pieza por número
-  console.log("Eliminando pieza con número: " + numPieza);
-};
-
+// Función para insertar una pieza
 const insertarPieza = (numPieza, numPedido, largo, ancho, grosor, color, ambasCaras, cortada) => {
-  //! Función para insertar una pieza
   console.log("Insertando nueva pieza:", numPieza, numPedido, largo, ancho, grosor, color, ambasCaras, cortada);
 };
 
+// Función para verificar si una pieza existe
+const piezaExistente = (numPieza) => {
+  const piezas = getPiezas();
+  return piezas.some((pieza) => pieza.numPieza === numPieza);
+};
+
+// Función para obtener las piezas
 const getPiezas = () => {
-  //! Función para obtener las piezas
   return [
-      { numPieza: 1, numPedido: 101, largo: 200, ancho: 100, grosor: 2, color: "Rojo", ambasCaras: true, cortada: false },
-      { numPieza: 2, numPedido: 102, largo: 150, ancho: 75, grosor: 3, color: "Azul", ambasCaras: false, cortada: true },
+    { numPieza: 1, numPedido: 1, largo: 100, ancho: 50, grosor: 5, color: "Rojo", ambasCaras: true, cortada: false },
+    { numPieza: 2, numPedido: 2, largo: 120, ancho: 60, grosor: 6, color: "Azul", ambasCaras: false, cortada: true },
   ];
 };
 
-const piezaExistente = (numPieza) => {
-  //! Función para verificar si una pieza existe
-  const piezas = getPiezas();
-  return piezas.some(pieza => pieza.numPieza === numPieza);
+// Función para cargar los datos de piezas
+const cargarDatosPiezas = () => {
+  console.log("Datos de piezas cargados");
 };
 
-const cargarDatosPiezas = () => {
-  //* Función para cargar o actualizar los datos de piezas
-  console.log("Datos de piezas cargados o actualizados");
-}; 
+// Asignar eventos a los botones de piezas
+const loadEventsPiezas = () => {
+  const { btnAnyadirPieza, btnEliminarPieza, btnModificarPieza } = controlesPiezas();
+  if (btnAnyadirPieza) btnAnyadirPieza.addEventListener("click", showAnyadirPiezaEvt, false);
+  if (btnEliminarPieza) btnEliminarPieza.addEventListener("click", eliminarPiezasEvt, false);
+};
+

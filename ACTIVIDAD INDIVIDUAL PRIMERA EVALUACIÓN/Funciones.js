@@ -14,7 +14,7 @@ function almacenar(){
        //^PIEZAS, ambos arrays están declarados en la parte 
        //^de arriba con los var 
     localStorage.setItem("pedidos",JSON.stringify(pedidos)); 
-    localStorage.setItem("lineas".JSON.stringify(piezas));
+    localStorage.setItem("piezas", JSON.stringify(piezas));
 }  
 
 function almacenadas(){ 
@@ -76,10 +76,8 @@ const piezaExistente=(numero)=>{
     if(!piezas) piezas=recuperacionPiezas(); 
     return piezas.some(pi=>pi.numPieza===numero); 
 } 
-
-const getPedidoPorNum=()=>recuperacionPedidos().find((pe)=>pe.numPedido===numero);//^busca los PEDIDOS en base al numero de pedido
-
-const getPiezaPorNum=()=>recuperacionPiezas().find((pi)=>pi.numPieza===numero);//^busca las PIEZAS en base al numero identificador de la pieza
+const getPedidoPorNum = (numero) => recuperacionPedidos().find((pe) => pe.numPedido === numero);
+const getPiezaPorNum = (numero) => recuperacionPiezas().find((pi) => pi.numPieza === numero);
 
 function nuevoPedidos(numPedido,cliente,fechaPedido,procesado,servido){  
     //^Esta función se encarga de crear  nuevos PEDIDOS
@@ -131,7 +129,7 @@ function modificar_Piezas_Por_NumPieza(nuNumPieza,nuNumPedi,nuLargo,nuAncho,nuGr
     let PiEzAs = piezas.find((pi)=>pi.numPieza===nuNumPieza); 
 
     if(PiEzAs){ 
-        PiEzAs.nuNumPedi=nuNumPedi; 
+        PiEzAs.numPedi = nuNumPedi;        
         PiEzAs.largo=nuLargo; 
         PiEzAs.ancho=nuAncho; 
         PiEzAs.grosor=nuGrosor;
@@ -145,12 +143,12 @@ function modificar_Piezas_Por_NumPieza(nuNumPieza,nuNumPedi,nuLargo,nuAncho,nuGr
 const cargaPieza = function(){  
     //^Esta funcion se encarga de crear la tabla de las PIEZAS
     let piezas = recuperacionPiezas(); 
-    let tblBody = document.getElementById("tblPieza").appendChild("tbody"); 
-    
-    if(!tblBody){ 
-        tblBody=document.createElement("tbody"); 
-        document.getElementById("tblPieza").appendChild("tbody"); 
+    let tblBody = document.getElementById("tblPieza").querySelector("tbody");
+    if (!tblBody) {
+        tblBody = document.createElement("tbody");
+        document.getElementById("tblPieza").appendChild(tblBody);
     }
+    
     tblBody.innerHTML=""; 
     piezas.forEach((pi1)=>{
         let fila=document.createElement("tr"); 
