@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./Funciones.js"></script>
+    <title>AvileSA</title> 
+    <script>
+        const resetData = () => { 
+            reinicializa(); 
+        }; 
+    </script>
+  </head>
+  <body>
+    <a href="Pedidos.html" target="_blank">Pedidos</a>
+    <br/>
+    <a href="Piezas.html" target="_blank">Piezas</a>
+    <br/>
+    <button id="reset">Reinicializa</button>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => { 
+        let pedido = getPedido(); 
+        if (!pedido) inicializa(); 
+      }); 
+
+      // Cambié el listener para que solo reaccione al clic en el botón de reinicialización
+      document.getElementById('reset').addEventListener('click', resetData, false);
+    </script>
+  </body>
+</html>
