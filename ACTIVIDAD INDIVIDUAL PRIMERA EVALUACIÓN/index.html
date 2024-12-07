@@ -6,9 +6,11 @@
     <script type="module" src="./Funciones.js" defer></script>
     <title>AvileSA</title>
     <script>
-      const resetData = () => {
-        reinicializa();
-      };
+      document.addEventListener("DOMContentLoaded", () => {
+        importarFunciones(); // Exponer funciones globales
+        const pedido = recuperacionPedidos();
+        if (!pedido || pedido.length === 0) almacenadas();
+      });
     </script>
   </head>
   <body>
@@ -19,15 +21,6 @@
       <a href="Piezas.html" target="_blank" aria-label="Gestión de Piezas">Piezas</a>
     </nav>
     <br />
-    <button id="reset" aria-label="Reiniciar todos los datos">Reinicializa</button>
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const pedido = getPedido(); 
-        if (!pedido) inicializa();  
-      });
-
-      document.getElementById("reset").addEventListener("click", resetData);
-    </script>
+    <button id="reset" onclick="reiniciar()" aria-label="Reiniciar todos los datos">Reiniciar</button>
   </body>
 </html>

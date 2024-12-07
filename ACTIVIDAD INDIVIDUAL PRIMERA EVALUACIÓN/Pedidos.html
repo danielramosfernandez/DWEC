@@ -8,28 +8,55 @@
     <title>AvileSA: Pedidos</title>
   </head>
   <body>
-    <h1>Gestión de Pedidos</h1>
-    <table id="tblPedidos">
-      <thead>
-        <tr>
-          <th>Número de Pedido</th>
-          <th>Cliente</th>
-          <th>Fecha de Pedido</th>
-          <th>Procesado</th>
-          <th>Servido</th>
-        </tr>
-      </thead>
-      <tbody id="tblBodyPedidos"></tbody>
+    <h1>Gestión de Pedidos</h1> 
+ 
+      <form id="formularioPedido">
+        <label for="txtNumPedido">Número de Pedido:</label>
+        <input type="text" id="txtNumPedido" placeholder="Número de pedido">
+        <br>
+  
+        <label for="cbCliente">Cliente:</label>
+        <input type="text" id="cbCliente" placeholder="Nombre del cliente">
+        <br>
+  
+        <label for="txtFechaPedido">Fecha de Pedido:</label>
+        <input type="text" id="txtFechaPedido" placeholder="Fecha de pedido (YYYY-MM-DD)">
+        <br>
+  
+        <label for="btnProcesado">Procesado:</label>
+        <input type="checkbox" id="btnProcesado">
+        <br>
+  
+        <label for="btnServido">Servido:</label>
+        <input type="checkbox" id="btnServido">
+        <br>
+  
+        <button type="button" id="btnAnyadir">Añadir Pedido</button>
+        <button type="button" id="btnEliminar">Eliminar Pedido</button>
+        <button type="button" id="btnModificar">Modificar Pedido</button>
+      </form>
+      <table id="tblPedidos">
+        <thead>
+            <tr>
+                <th>Número de Pedido</th>
+                <th>Cliente</th>
+                <th>Fecha de Pedido</th>
+                <th>Procesado</th>
+                <th>Servido</th>
+            </tr>
+        </thead>
+        <tbody id="tblBodyPedidos"></tbody>
     </table>
-    <button id="btnAnyadir" aria-label="Añadir Pedido">Añadir Pedido</button>
-    <button id="btnEliminar" aria-label="Eliminar Pedido">Eliminar Pedido</button>
-    <button id="btnModificar" aria-label="Modificar Pedido">Modificar Pedido</button>
+    
+    
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        loadData();  // Llama a tu función para cargar datos
-        loadEvents(); // Llama a tu función para cargar eventos
-      });
+    document.addEventListener("DOMContentLoaded", () => {
+    loadData(); // Llama a loadData para cargar los datos de los pedidos
+    loadEvents(); // Asignar eventos a los botones
+});
+
+
     </script>
   </body>
 </html>

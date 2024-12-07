@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>MaderAvilés</title>
+</head>
+<body>
+    <header>
+        <h1>Gestión de Pedidos - MaderAvilés</h1>
+        <nav>
+            <ul>
+                <li><a href="#pedidos">Pedidos</a></li>
+                <li><a href="#piezas">Piezas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="pedidos">
+        <h2>Gestión de Pedidos</h2>
+        <form id="formPedido">
+            <label for="numeroPedido">Número de Pedido:</label>
+            <input type="number" id="numeroPedido" required>
+            <label for="cliente">Cliente:</label>
+            <input type="text" id="cliente" maxlength="50" required>
+            <label for="fechaPedido">Fecha de Pedido:</label>
+            <input type="date" id="fechaPedido" required>
+            <button type="submit">Guardar Pedido</button>
+        </form>
+        <div id="listaPedidos"></div>
+    </section>
+
+    <section id="piezas">
+        <h2>Gestión de Piezas</h2>
+        <form id="formPieza">
+            <label for="numeroPieza">Número de Pieza:</label>
+            <input type="number" id="numeroPieza" required>
+            <label for="numeroPedidoPieza">Número de Pedido:</label>
+            <input type="number" id="numeroPedidoPieza" required>
+            <label for="largo">Largo (cm):</label>
+            <input type="number" id="largo" required>
+            <button type="submit">Guardar Pieza</button>
+        </form>
+        <div id="listaPiezas"></div>
+    </section>
+
+    <script src="localStorage.js"></script>
+    <script src="pedidos.js"></script>
+    <script src="piezas.js"></script>
+</body>
+</html>

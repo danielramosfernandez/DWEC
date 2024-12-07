@@ -3,64 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./Funciones.js"></script>
+    <script type="module" src="./Funciones.js" defer></script>
     <script src="./Eventos.js" defer></script>
-    <title>AvileSA: Piezas</title>
+    <title>AvileSA: Pedidos</title>
   </head>
   <body>
-    <h1>Gestión de Piezas</h1>
-    <table id="tblPiezas">
+    <h1>Gestión de Pedidos</h1>
+    <table id="tblPedidos">
       <thead>
         <tr>
-          <th>Número de Pieza</th>
           <th>Número de Pedido</th>
-          <th>Largo</th>
-          <th>Ancho</th>
-          <th>Grosor</th>
-          <th>Color</th>
-          <th>Ambas Caras</th>
-          <th>Cortada</th>
+          <th>Cliente</th>
+          <th>Fecha de Pedido</th>
+          <th>Procesado</th>
+          <th>Servido</th>
         </tr>
       </thead>
-      <tbody id="tblBodyPiezas"></tbody>
+      <tbody id="tblBodyPedidos"></tbody>
     </table>
-    <button id="btnAnyadir" aria-label="Añadir Pieza">Añadir Pieza</button>
-    <button id="btnEliminar" aria-label="Eliminar Pieza">Eliminar Pieza</button>
-    <button id="btnModificar" aria-label="Modificar Pieza">Modificar Pieza</button>
+    <button id="btnAnyadir" aria-label="Añadir Pedido">Añadir Pedido</button>
+    <button id="btnEliminar" aria-label="Eliminar Pedido">Eliminar Pedido</button>
+    <button id="btnModificar" aria-label="Modificar Pedido">Modificar Pedido</button>
     
-    <div id="editPieza" style="display: none;">
-      <h2>Editar Pieza</h2>
-      <label for="txtNumPieza">Número de Pieza:</label>
-      <input type="number" id="txtNumPieza" min="1" required />
-      <br /><br />
-      <label for="cbNumPedido">Número de Pedido:</label>
-      <input type="number" id="cbNumPedido" required />
-      <br /><br />
-      <label for="cbLargo">Largo (cm):</label>
-      <input type="number" id="cbLargo" step="0.1" min="0" required />
-      <br /><br />
-      <label for="cbAncho">Ancho (cm):</label>
-      <input type="number" id="cbAncho" step="0.1" min="0" required />
-      <br /><br />
-      <label for="cbGrosor">Grosor (cm):</label>
-      <input type="number" id="cbGrosor" step="0.1" min="0" required />
-      <br /><br />
-      <label for="txtColor">Color:</label>
-      <input type="text" id="txtColor" required />
-      <br /><br />
-      <label for="btnAmbasCaras">Ambas Caras:</label>
-      <input type="checkbox" id="btnAmbasCaras" />
-      <br /><br />
-      <label for="btnCortada">Cortada:</label>
-      <input type="checkbox" id="btnCortada" />
-      <br /><br />
-      <button id="btnAccionPieza">Guardar</button>
-    </div>
-    
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        cargarDatosPiezas(); // Cargar las piezas en la tabla
-        loadEvents(); // Asignar eventos a los botones
+        importarFunciones(); // Asegura que las funciones globales estén disponibles.
+        loadData();  // Carga inicial de datos en la tabla.
+        loadEvents(); // Asigna eventos a los botones.
       });
     </script>
   </body>
