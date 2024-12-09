@@ -17,129 +17,101 @@ class IMC {
 const personas = [];
 const personasFueraDeRango = [];
 
-// Funciones para manejar personas e IMC
-function añadirPersona(nombre, peso, altura) {
-    if (!nombre || peso <= 0 || peso > 500 || altura <= 0 || altura > 3) {
-        alert("Datos inválidos. Verifique el peso (0-500kg) y la altura (0-3m).");
-        return;
-    }
-    if (personas.some(p => p.nombre.toLowerCase() === nombre.toLowerCase())) {
-        alert("Ya existe una persona con este nombre.");
-        return;
-    }
-    personas.push(new Persona(nombre, peso, altura));
-    guardarDatos();
-    mostrarPersonas();
-}
 
-function modificarPersona(nombre, nuevoPeso, nuevaAltura) {
-    const persona = personas.find(p => p.nombre === nombre);
-    if (persona) {
-        if (nuevoPeso <= 0 || nuevoPeso > 500 || nuevaAltura <= 0 || nuevaAltura > 3) {
-            alert("Datos inválidos. Verifique el peso (0-500kg) y la altura (0-3m).");
+    // Función para añadir persona
+    function añadirPersona(nombre, peso, altura) {
+        if (!nombre || peso <= 0 || altura <= 0) {
+            alert("Datos inválidos.");
             return;
         }
-        persona.peso = nuevoPeso;
-        persona.altura = nuevaAltura;
-        guardarDatos();
+        personas.push({ nombre, peso, altura });
         mostrarPersonas();
-    } else {
-        alert("Persona no encontrada.");
     }
-}
 
-function calcularIMC() {
-    personasFueraDeRango.length = 0;
-    const $tbodyPersonas = $("#tablaPersonas tbody");
-    const $tbodyFueraDeRango = $("#tablaFueraDeRango tbody");
-
-    $tbodyPersonas.empty();
-    $tbodyFueraDeRango.empty();
-
-    personas.forEach(persona => {
-        const imc = persona.peso / (persona.altura ** 2);
-        let categoria;
-        if (imc <= 18.48) categoria = "Demasiado delgada";
-        else if (imc <= 24.99) categoria = "Peso normal";
-        else categoria = "Demasiado obesa";
-
-        const $tr = $("<tr>").html(
-            `<td>${persona.nombre}</td>
-             <td>${persona.peso}</td>
-             <td>${persona.altura}</td>
-             <td>${imc.toFixed(2)}</td>
-             <td>${categoria}</td>`
-        );
-        $tbodyPersonas.append($tr);
-
-        if (categoria !== "Peso normal") {
-            personasFueraDeRango.push(new IMC(persona.nombre, imc.toFixed(2)));
-            const $trFueraDeRango = $("<tr>").html(
-                `<td>${persona.nombre}</td><td>${imc.toFixed(2)}</td>`
-            );
-            $tbodyFueraDeRango.append($trFueraDeRango);
+    // Función para modificar persona
+    function modificarPersona(nombre, nuevoPeso, nuevaAltura) {
+        const persona = personas.find(p => p.nombre === nombre);
+        if (persona) {
+            persona.peso = nuevoPeso;
+            persona.altura = nuevaAltura;
+            mostrarPersonas();
+        } else {
+            alert("Persona no encontrada.");
         }
-    });
-}
-
-function mostrarPersonas() {
-    const $tbody = $("#tablaPersonas tbody");
-    $tbody.empty();
-    personas.forEach(persona => {
-        const $tr = $("<tr>").html(
-            `<td>${persona.nombre}</td><td>${persona.peso}</td><td>${persona.altura}</td>`
-        );
-        $tbody.append($tr);
-    });
-}
-
-// Guardar y cargar datos en localStorage
-function guardarDatos() {
-    localStorage.setItem("personas", JSON.stringify(personas));
-}
-
-function cargarDatos() {
-    const datosGuardados = JSON.parse(localStorage.getItem("personas"));
-    if (datosGuardados) {
-        datosGuardados.forEach(p => personas.push(new Persona(p.nombre, p.peso, p.altura)));
-        mostrarPersonas();
     }
-}
 
-function borrarDatos() {
-    if (confirm("¿Está seguro de borrar todos los datos?")) {
-        localStorage.removeItem("personas");
-        personas.length = 0;
-        mostrarPersonas();
-        alert("Datos eliminados correctamente.");
+    // Función para calcular IMC
+    function calcularIMC() {
+        personasFueraDeRango.length = 0;
+        $('#tablaPersonas tbody').empty();
+        $('#tablaFueraDeRango tbody').empty();
+
+        personas.forEach(persona => {
+            const imc = persona.peso / (persona.altura ** 2);
+            let categoria;
+            if (imc <= 18.48) categoria = "Demasiado delgada";
+            else if (imc <= 24.99) categoria = "Peso normal";
+            else categoria = "Demasiado obesa";
+
+            // Agregar persona a la tabla
+            $('#tablaPersonas tbody').append(`
+                <tr>
+                    <td>${persona.nombre}</td>
+                    <td>${persona.peso}</td>
+                    <td>${persona.altura}</td>
+                    <td>${imc.toFixed(2)}</td>
+                    <td>${categoria}</td>
+                </tr>
+            `);
+
+            // Agregar personas fuera de rango a otra tabla
+            if (categoria !== "Peso normal") {
+                personasFueraDeRango.push({ nombre: persona.nombre, imc: imc.toFixed(2) });
+                $('#tablaFueraDeRango tbody').append(`
+                    <tr>
+                        <td>${persona.nombre}</td>
+                        <td>${imc.toFixed(2)}</td>
+                    </tr>
+                `);
+            }
+        });
     }
-}
 
-// Eventos
-$(document).ready(function () {
-    // Cargar datos al inicio
-    cargarDatos();
+    // Función para mostrar personas en la tabla
+    function mostrarPersonas() {
+        $('#tablaPersonas tbody').empty();
+        personas.forEach(persona => {
+            $('#tablaPersonas tbody').append(`
+                <tr>
+                    <td>${persona.nombre}</td>
+                    <td>${persona.peso}</td>
+                    <td>${persona.altura}</td>
+                </tr>
+            `);
+        });
+    }
 
-    // Añadir persona
-    $("#formAñadir").on("submit", function (e) {
+    // Evento para añadir persona
+    $('#formAñadir').submit(function(e) {
         e.preventDefault();
-        const nombre = $("#nombre").val();
-        const peso = parseFloat($("#peso").val());
-        const altura = parseFloat($("#altura").val());
+        const nombre = $('#nombre').val();
+        const peso = parseFloat($('#peso').val());
+        const altura = parseFloat($('#altura').val());
         añadirPersona(nombre, peso, altura);
-        this.reset();
+        $(this).trigger('reset');
     });
 
-    // Modificar persona
-    $("#formModificar").on("submit", function (e) {
+    // Evento para modificar persona
+    $('#formModificar').submit(function(e) {
         e.preventDefault();
-        const nombre = $("#modNombre").val();
-        const nuevoPeso = parseFloat($("#modPeso").val());
-        const nuevaAltura = parseFloat($("#modAltura").val());
+        const nombre = $('#modNombre').val();
+        const nuevoPeso = parseFloat($('#modPeso').val());
+        const nuevaAltura = parseFloat($('#modAltura').val());
         modificarPersona(nombre, nuevoPeso, nuevaAltura);
-        this.reset();
+        $(this).trigger('reset');
     });
 
-    // Borrar datos
-    $("#borrarDatos").on("click", borrarDatos);
-});
+    // Evento para calcular IMC al hacer clic en el botón
+    $('#calcularIMC').click(function() {
+        calcularIMC();
+    })
