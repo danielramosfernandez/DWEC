@@ -105,7 +105,7 @@ const personasFueraDeRango = [];
     $('#formModificar').submit(function(e) {
         e.preventDefault();
         const nombre = $('#modNombre').val();
-        const nuevoPeso = parseFloat($('#modPeso').val());
+        const nuevoPeso   = parseFloat($('#modPeso').val());
         const nuevaAltura = parseFloat($('#modAltura').val());
         modificarPersona(nombre, nuevoPeso, nuevaAltura);
         $(this).trigger('reset');
