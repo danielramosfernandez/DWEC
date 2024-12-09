@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Piezas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+      
+    </style>
+</head>
+<body>
+
+<h1>Gestión de Piezas</h1>
+
+<!-- Tabla para mostrar las piezas -->
+<h2>Lista de Piezas</h2>
+<table id="tablaPedidos">
+    <thead>
+        <tr>
+            <th>Número Pieza</th>
+        
+            <th>Largo (cm)</th>
+            <th>Ancho (cm)</th>
+            <th>Grosor (cm)</th>
+            <th>Color</th>
+            <th>Superficie (cm²)</th>
+            <th>Volumen (cm³)</th>
+       
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Las piezas se insertarán aquí dinámicamente -->
+    </tbody>
+</table>
+
+<!-- Formulario para añadir una nueva pieza -->
+<h3>Añadir Nueva Pieza</h3>
+<form id="formularioAñadir">
+    <label for="numPieza">Número Pieza:</label>
+    <input type="number" id="numPieza" required><br>
+    <label for="numPedi">Número Pedido:</label>
+    <input type="number" id="numPedi" required><br>
+    <label for="largo">Largo (cm):</label>
+    <input type="number" step="0.01" id="largo" required><br>
+    <label for="ancho">Ancho (cm):</label>
+    <input type="number" step="0.01" id="ancho" required><br>
+    <label for="grosor">Grosor (cm):</label>
+    <input type="number" step="0.01" id="grosor" required><br>
+    <label for="color">Color:</label>
+    <input type="text" id="color" required><br>
+    <label for="ambasCaras">Ambas Caras:</label>
+    <input type="checkbox" id="ambasCaras"><br>
+    <label for="cortada">Cortada:</label>
+    <input type="checkbox" id="cortada"><br>
+    <button type="submit">Añadir Pieza</button>
+</form>
+
+<!-- Formulario para modificar una pieza -->
+<h3>Modificar Pieza</h3>
+<form id="formularioModificacion">
+    <label for="modNumPieza">Número Pieza:</label>
+    <input type="number" id="modNumPieza" required><br>
+    <label for="modLargo">Largo (cm):</label>
+    <input type="number" step="0.01" id="modLargo" required><br>
+    <label for="modAncho">Ancho (cm):</label>
+    <input type="number" step="0.01" id="modAncho" required><br>
+    <label for="modGrosor">Grosor (cm):</label>
+    <input type="number" step="0.01" id="modGrosor" required><br>
+    <label for="modColor">Color:</label>
+    <input type="text" id="modColor" required><br>
+    <button type="button" id="modificarPiezaBtn" onclick="modificarPieza()">Modificar Pieza</button>
+</form>
+
+<!-- Formulario para eliminar una pieza -->
+<h3>Eliminar Pieza</h3>
+<form id="formularioEliminar">
+    <label for="numPiezaEliminar">Número de Pieza a Eliminar:</label>
+    <input type="number" id="numPiezaEliminar" required><br>
+    <button type="button" id="eliminarPiezaBtn" onclick="eliminarPieza()">Eliminar Pieza</button>
+</form>
+
+<script src="Piezas.js"></script>
+
+</body>
+</html>
