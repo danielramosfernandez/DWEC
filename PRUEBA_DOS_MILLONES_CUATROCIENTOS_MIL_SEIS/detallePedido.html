@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Pedido</title>
+</head>
+<body>
+    <h1>Detalles del Pedido</h1>
+    <form id="detalleForm">
+        <label for="numPedidoDetalle">Número de Pedido:</label>
+        <input type="number" id="numPedidoDetalle" min="1" required><br>
+        <button type="submit">Ver Detalles</button>
+    </form>
+    <h2>Detalles</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Número de Pieza</th>
+                <th>Largo (cm)</th>
+                <th>Ancho (cm)</th>
+                <th>Grosor (cm)</th>
+                <th>Color</th>
+                <th>Superficie (cm²)</th>
+                <th>Volumen (cm³)</th>
+            </tr>
+        </thead>
+        <tbody id="detalleTabla"></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>

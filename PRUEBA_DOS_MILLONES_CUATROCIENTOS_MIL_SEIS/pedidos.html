@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos</title>
+</head>
+<body>
+    <h1>Gestión de Pedidos</h1>
+    <form id="pedidoForm">
+        <label for="numPedido">Número de Pedido:</label>
+        <input type="number" id="numPedido" min="1" required><br>
+        
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" maxlength="50" required><br>
+        
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required><br>
+        
+        <button type="submit">Añadir Pedido</button>
+    </form>
+    <h2>Lista de Pedidos</h2>
+    <ul id="listaPedidos"></ul>
+    <script src="script.js"></script>
+</body>
+</html>
