@@ -6,7 +6,7 @@
     <title>Gestión de Pedidos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+
             margin: 20px;
             padding: 20px;
         }
@@ -18,7 +18,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 20px; 
         }
         th, td {
             padding: 10px;
@@ -26,9 +26,23 @@
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #4a51ad;
+            color: white;
         }
-        
+        .formulario-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        form {
+            flex: 1;
+            background-color: #ada9a9;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -52,44 +66,50 @@
     </tbody>
 </table>
 
-<!-- Formulario para añadir un nuevo pedido -->
-<h3>Añadir Nuevo Pedido</h3>
-<form id="formAñadirPedido">
-    <label for="numPedido">Número Pedido:</label>
-    <input type="number" id="numPedido" required><br>
-    <label for="cliente">Cliente:</label>
-    <input type="text" id="cliente" required><br>
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" required><br>
-    <label for="procesado">¿Procesado?</label>
-    <input type="checkbox" id="procesado"><br>
-    <label for="servido">¿Servido?</label>
-    <input type="checkbox" id="servido"><br>
-    <button type="submit">Añadir Pedido</button>
-</form>
+<!-- Contenedor de formularios -->
+<div class="formulario-container">
 
-<!-- Formulario para modificar un pedido -->
-<h3>Modificar Pedido</h3>
-<form id="formFormularioModificar">
-    <label for="modNumPedido">Número Pedido:</label>
-    <input type="number" id="modNumPedido" required><br>
-    <label for="modCliente">Cliente:</label>
-    <input type="text" id="modCliente" required><br>
-    <label for="modFecha">Fecha:</label>
-    <input type="date" id="modFecha" required><br>
-    <label for="modProcesado">¿Procesado?</label>
-    <input type="checkbox" id="modProcesado"><br>
-    <label for="modServido">¿Servido?</label>
-    <input type="checkbox" id="modServido"><br>
+    <!-- Formulario para añadir un nuevo pedido -->
+    <form id="formAñadirPedido">
+        <h3>Añadir Nuevo Pedido</h3>
+        <label for="numPedido">Número Pedido:</label>
+        <input type="number" id="numPedido" required><br>
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" required><br>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required><br>
+        <label for="procesado">¿Procesado?</label>
+        <input type="checkbox" id="procesado"><br>
+        <label for="servido">¿Servido?</label>
+        <input type="checkbox" id="servido"><br>
+        <button type="submit">Añadir Pedido</button>
+    </form>
 
-    <button type="button" id="modificarPedidoBtn" onclick="modificarPedido()">Modificar Pedido</button>
+    <!-- Formulario para modificar un pedido -->
+    <form id="formFormularioModificar">
+        <h3>Modificar Pedido</h3>
+        <label for="modNumPedido">Número Pedido:</label>
+        <input type="number" id="modNumPedido" required><br>
+        <label for="modCliente">Cliente:</label>
+        <input type="text" id="modCliente" required><br>
+        <label for="modFecha">Fecha:</label>
+        <input type="date" id="modFecha" required><br>
+        <label for="modProcesado">¿Procesado?</label>
+        <input type="checkbox" id="modProcesado"><br>
+        <label for="modServido">¿Servido?</label>
+        <input type="checkbox" id="modServido"><br>
+        <button type="button" id="modificarPedidoBtn" onclick="modificarPedido()">Modificar Pedido</button>
+    </form>
 
-    <!-- Añadimos el campo de número de pedido para eliminar -->
-    <h3>Eliminar Pedido</h3>
-    <label for="numPedidoEliminar">Número de Pedido a Eliminar:</label>
-    <input type="number" id="numPedidoEliminar" required><br>
-    <button type="button" id="eliminarPedidoBtn" onclick="eliminarPedido()">Eliminar Pedido</button>
-</form>
+    <!-- Formulario para eliminar un pedido -->
+    <form id="formEliminarPedido">
+        <h3>Eliminar Pedido</h3>
+        <label for="numPedidoEliminar">Número de Pedido a Eliminar:</label>
+        <input type="number" id="numPedidoEliminar" required><br>
+        <button type="button" id="eliminarPedidoBtn" onclick="eliminarPedido()">Eliminar Pedido</button>
+    </form>
+
+</div>
 
 <!-- Vinculamos el archivo JavaScript -->
 <script src="Pedidos.js"></script>

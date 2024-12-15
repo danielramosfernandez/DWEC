@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px;
+            text-align: left;
+        }
+</style>
+<body>
+
+    <h2>Añadir Vuelo</h2>
+    <form id="formAnyadir">
+        <label for="codigo">Codigo: </label><input type="text" id="codigo" required><br>
+        <label for="numeroPlazas">Plazas: </label><input type="number" id="numeroPlazas" required><br>
+        <label for="importeBillete">Importe: </label><input type="number" id="importeBillete" step="0.01" required><br>
+        <button type="submit">Añadir Vuelo</button>
+    </form>
+    
+    <h2>Modificar Vuelo</h2>
+    <form id="formModificar">
+        <label for="modCodigo">Codigo: </label><input type="text" id="modCodigo" required><br>
+        <label for="modnumeroPlazas">Plazas: </label><input type="number" id="modnumeroPlazas" required><br>
+        <label for="modimporteBillete">Importe: </label><input type="number" id="modimporteBillete" step="0.01" required><br>
+        <button type="submit">Modificar Datos</button>
+    </form>
+    
+    <button id="calcularIngresos">Calcular Ingresos</button>
+
+    
+    <h2>Lista de Personas</h2>
+    <table id="tablaVuelos">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Plazas</th>
+                <th>Importe Billete</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <h2>Personas Fuera del Peso Normal</h2>
+    <table id="tablaMuyRentales">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Ingreso estimado</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="Function.js"></script>
+    </body>
+    </html>
+    

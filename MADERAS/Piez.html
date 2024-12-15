@@ -6,7 +6,6 @@
     <title>Gestión de Piezas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 20px;
             padding: 20px;
         }
@@ -26,9 +25,23 @@
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #4a51ad;
+            color: white;
         }
-      
+        .formulario-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        form {
+            flex: 1; 
+            background-color: #ada9a9;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -41,14 +54,12 @@
     <thead>
         <tr>
             <th>Número Pieza</th>
-        
             <th>Largo (cm)</th>
             <th>Ancho (cm)</th>
             <th>Grosor (cm)</th>
             <th>Color</th>
             <th>Superficie (cm²)</th>
             <th>Volumen (cm³)</th>
-       
         </tr>
     </thead>
     <tbody>
@@ -56,51 +67,54 @@
     </tbody>
 </table>
 
-<!-- Formulario para añadir una nueva pieza -->
-<h3>Añadir Nueva Pieza</h3>
-<form id="formularioAñadir">
-    <label for="numPieza">Número Pieza:</label>
-    <input type="number" id="numPieza" required><br>
-    <label for="numPedi">Número Pedido:</label>
-    <input type="number" id="numPedi" required><br>
-    <label for="largo">Largo (cm):</label>
-    <input type="number" step="0.01" id="largo" required><br>
-    <label for="ancho">Ancho (cm):</label>
-    <input type="number" step="0.01" id="ancho" required><br>
-    <label for="grosor">Grosor (cm):</label>
-    <input type="number" step="0.01" id="grosor" required><br>
-    <label for="color">Color:</label>
-    <input type="text" id="color" required><br>
-    <label for="ambasCaras">Ambas Caras:</label>
-    <input type="checkbox" id="ambasCaras"><br>
-    <label for="cortada">Cortada:</label>
-    <input type="checkbox" id="cortada"><br>
-    <button type="submit">Añadir Pieza</button>
-</form>
+<!-- Contenedor de formularios -->
+<div class="formulario-container">
 
-<!-- Formulario para modificar una pieza -->
-<h3>Modificar Pieza</h3>
-<form id="formularioModificacion">
-    <label for="modNumPieza">Número Pieza:</label>
-    <input type="number" id="modNumPieza" required><br>
-    <label for="modLargo">Largo (cm):</label>
-    <input type="number" step="0.01" id="modLargo" required><br>
-    <label for="modAncho">Ancho (cm):</label>
-    <input type="number" step="0.01" id="modAncho" required><br>
-    <label for="modGrosor">Grosor (cm):</label>
-    <input type="number" step="0.01" id="modGrosor" required><br>
-    <label for="modColor">Color:</label>
-    <input type="text" id="modColor" required><br>
-    <button type="button" id="modificarPiezaBtn" onclick="modificarPieza()">Modificar Pieza</button>
-</form>
+    <!-- Formulario para añadir una nueva pieza -->
+    <form id="formularioAñadir">
+        <h3>Añadir Nueva Pieza</h3>
+        <label for="numPieza">Número Pieza:</label>
+        <input type="number" id="numPieza" required><br>
+        <label for="largo">Largo (cm):</label>
+        <input type="number" step="0.01" id="largo" required><br>
+        <label for="ancho">Ancho (cm):</label>
+        <input type="number" step="0.01" id="ancho" required><br>
+        <label for="grosor">Grosor (cm):</label>
+        <input type="number" step="0.01" id="grosor" required><br>
+        <label for="color">Color:</label>
+        <input type="text" id="color" required><br>
+        <label for="ambasCaras">Ambas Caras:</label>
+        <input type="checkbox" id="ambasCaras"><br>
+        <label for="cortada">Cortada:</label>
+        <input type="checkbox" id="cortada"><br>
+        <button type="submit">Añadir Pieza</button>
+    </form>
 
-<!-- Formulario para eliminar una pieza -->
-<h3>Eliminar Pieza</h3>
-<form id="formularioEliminar">
-    <label for="numPiezaEliminar">Número de Pieza a Eliminar:</label>
-    <input type="number" id="numPiezaEliminar" required><br>
-    <button type="button" id="eliminarPiezaBtn" onclick="eliminarPieza()">Eliminar Pieza</button>
-</form>
+    <!-- Formulario para modificar una pieza -->
+    <form id="formularioModificacion">
+        <h3>Modificar Pieza</h3>
+        <label for="modNumPieza">Número Pieza:</label>
+        <input type="number" id="modNumPieza" required><br>
+        <label for="modLargo">Largo (cm):</label>
+        <input type="number" step="0.01" id="modLargo" required><br>
+        <label for="modAncho">Ancho (cm):</label>
+        <input type="number" step="0.01" id="modAncho" required><br>
+        <label for="modGrosor">Grosor (cm):</label>
+        <input type="number" step="0.01" id="modGrosor" required><br>
+        <label for="modColor">Color:</label>
+        <input type="text" id="modColor" required><br>
+        <button type="button" id="modificarPiezaBtn" onclick="modificarPieza()">Modificar Pieza</button>
+    </form>
+
+    <!-- Formulario para eliminar una pieza -->
+    <form id="formularioEliminar">
+        <h3>Eliminar Pieza</h3>
+        <label for="numPiezaEliminar">Número de Pieza a Eliminar:</label>
+        <input type="number" id="numPiezaEliminar" required><br>
+        <button type="button" id="eliminarPiezaBtn" onclick="eliminarPieza()">Eliminar Pieza</button>
+    </form>
+
+</div>
 
 <script src="Piezas.js"></script>
 

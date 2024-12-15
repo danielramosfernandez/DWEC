@@ -1,6 +1,7 @@
 class Piezas {
-    constructor(numPieza, largo, ancho, grosor, color, ambasCaras, cortada) {
+    constructor(numPieza, numPedi, largo, ancho, grosor, color, ambasCaras, cortada) {
         this.numPieza = numPieza;
+        this.numPedi = numPedi;
         this.largo = largo;
         this.ancho = ancho;
         this.grosor = grosor;
@@ -14,17 +15,21 @@ class Piezas {
     }
 
     calcularSuperficie() {
-        return this.largo * this.ancho; // Superficie de ambas caras
+        // Superficie de ambas caras
+        return this.largo * this.ancho * (this.ambasCaras ? 2 : 1);
     }
 
     calcularVolumen() {
-        return this.largo * this.ancho * this.grosor; // Volumen
+        // Volumen: Largo x Ancho x Grosor
+        return this.largo * this.ancho * this.grosor;
     }
 }
 
-// Cargar piezas desde localStorage y convertirlas en instancias de Piezas
-let piezas = JSON.parse(localStorage.getItem("piezas")) || [];
-piezas = piezas.map(piezaData => Object.assign(new Piezas(), piezaData));
+let piezas = JSON.parse(localStorage.getItem("piezas"));
+if (!Array.isArray(piezas)) {
+    piezas = [];
+    localStorage.setItem("piezas", JSON.stringify(piezas));
+}
 
 function guardarPiezas() {
     localStorage.setItem("piezas", JSON.stringify(piezas));
@@ -38,34 +43,34 @@ function visualizarPiezas() {
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${pieza.numPieza}</td>
+            <td>${pieza.numPedi}</td>
             <td>${pieza.largo} cm</td>
             <td>${pieza.ancho} cm</td>
             <td>${pieza.grosor} cm</td>
             <td>${pieza.color}</td>
             <td>${pieza.superficie.toFixed(2)} cm²</td>
             <td>${pieza.volumen.toFixed(2)} cm³</td>
+            <td>${pieza.ambasCaras ? "Sí" : "No"}</td>
+            <td>${pieza.cortada ? "Sí" : "No"}</td>
         `;
-
-        tr.addEventListener("click", () => formularioModificacion(pieza.numPieza));
-
         tbody.appendChild(tr);
     });
 }
 
-function añadirPieza(numPieza, largo, ancho, grosor, color, ambasCaras, cortada) {
-    if (piezas.some(p => p.numPieza === numPieza)) {
-        alert(`Ya existe una pieza con el número ${numPieza}`);
+function añadirPieza(numPieza, numPedi, largo, ancho, grosor, color, ambasCaras, cortada) {
+    if (!Number.isInteger(numPedi)) {
+        alert("El número de pedido debe ser entero");
         return;
     }
     if (!Number.isInteger(numPieza)) {
-        alert("El número de pieza debe ser un entero");
+        alert("El número de pieza debe ser entero");
         return;
     }
     if (!largo || !ancho || !grosor || !color || ambasCaras === undefined || cortada === undefined) {
         alert("Datos inválidos. Por favor, introduzca los datos correctos");
         return;
     }
-    const nuevaPieza = new Piezas(numPieza, largo, ancho, grosor, color, ambasCaras, cortada);
+    const nuevaPieza = new Piezas(numPieza, numPedi, largo, ancho, grosor, color, ambasCaras, cortada);
     piezas.push(nuevaPieza);
     guardarPiezas();
     visualizarPiezas();
@@ -107,6 +112,7 @@ function modificarPieza() {
         return;
     }
 
+    // Modificar datos y recalcular superficie y volumen
     pieza.largo = nuevoLargo;
     pieza.ancho = nuevoAncho;
     pieza.grosor = nuevoGrosor;
@@ -119,27 +125,34 @@ function modificarPieza() {
     alert(`La pieza con número ${numPieza} fue modificada correctamente`);
 }
 
+function formularioModificacion(numPieza) {
+    const pieza = piezas.find(p => p.numPieza === numPieza);
+    if (!pieza) {
+        alert(`No se puede encontrar la pieza con número ${numPieza}`);
+        return;
+    }
+    document.getElementById("modNumPieza").value = pieza.numPieza;
+    document.getElementById("modLargo").value = pieza.largo;
+    document.getElementById("modAncho").value = pieza.ancho;
+    document.getElementById("modGrosor").value = pieza.grosor;
+    document.getElementById("modColor").value = pieza.color;
+
+    document.getElementById("modificarPiezaBtn").style.display = 'inline-block';
+    document.getElementById("eliminarPiezaBtn").style.display = 'inline-block';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     visualizarPiezas();
 });
 
-document.getElementById("formularioAñadir").addEventListener("submit", (e) => {
+document.getElementById("formularioModificacion").addEventListener("submit", (e) => {
     e.preventDefault();
-
     const numPieza = parseInt(document.getElementById("numPieza").value, 10);
     const largo = parseFloat(document.getElementById("largo").value);
     const ancho = parseFloat(document.getElementById("ancho").value);
     const grosor = parseFloat(document.getElementById("grosor").value);
-    const color = document.getElementById("color").value.trim();
-    const ambasCaras = document.getElementById("ambasCaras").checked;
-    const cortada = document.getElementById("cortada").checked;
+    const color = document.getElementById("color").value;
 
-    añadirPieza(numPieza, largo, ancho, grosor, color, ambasCaras, cortada);
-
-    e.target.reset(); // Limpiar el formulario
-});
-
-document.getElementById("formularioModificacion").addEventListener("submit", (e) => {
-    e.preventDefault();
-    modificarPieza();
+    añadirPieza(numPieza, largo, ancho, grosor, color);
+    e.target.reset();
 });
